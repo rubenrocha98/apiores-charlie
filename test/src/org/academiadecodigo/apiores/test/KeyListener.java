@@ -41,7 +41,7 @@ public class KeyListener implements KeyboardHandler {
         keyboard.addEventListener(rightArrow);
 
         KeyboardEvent rKey = new KeyboardEvent();
-        rKey.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        rKey.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         rKey.setKey(KeyboardEvent.KEY_R);
         keyboard.addEventListener(rKey);
 
@@ -54,12 +54,7 @@ public class KeyListener implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()){
-            case KeyboardEvent.KEY_R:
-                if(Main.test.isDead()){
-                    Main.test.restart();
-                }
-        }
+
 
 
         if(Main.test.isDead()){
@@ -100,19 +95,18 @@ public class KeyListener implements KeyboardHandler {
                 movable.translate(-speed, 0);
                 break;
 
-
-
-            case KeyboardEvent.KEY_R:
-                if(Main.test.isDead()){
-
-                }
         }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-
+        switch (keyboardEvent.getKey()){
+            case KeyboardEvent.KEY_R:
+                if(Main.test.isDead()){
+                    Main.test.restart();
+                }
+        }
 
     }
 

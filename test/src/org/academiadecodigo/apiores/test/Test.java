@@ -14,6 +14,7 @@ public class Test {
     private MoveCars[] firstTrack = new MoveCars[4];
     private MoveCars[] secondTrack = new MoveCars[2];
     private MoveCars[] thirdTrack = new MoveCars[3];
+
     private boolean dead = false;
 
 
@@ -22,22 +23,23 @@ public class Test {
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
         canvas.show(rec);
-
+        rectangle = new Rectangle(480, 450, 50, 50);
     }
 
     public void start() throws InterruptedException {
 
-        while (true) {
-
+        while(true) {
+            rectangle.delete();
             rectangle = new Rectangle(480, 450, 50, 50);
+
             KeyListener keyboard = new KeyListener(rectangle, 20);
             rectangle.setColor(Color.BLUE);
             rectangle.fill();
 
 
-            createCars(firstTrack, 30, 200, 140);
+            createCars(firstTrack, 15, 200, 140);
             createCars(secondTrack, -20, 500, 260);
-            createCars(thirdTrack, 30, 300, 320);
+            createCars(thirdTrack, 15, 300, 320);
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
             Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
@@ -60,18 +62,17 @@ public class Test {
                     car.moveCarLeft();
                     checkDead(car);
                 }
-                System.out.println(dead);
                 Thread.sleep(75);
 
 
             }
             rectangle.setColor(Color.RED);
 
+            while (dead) {
+                System.out.println();
+            }
 
-                if (!dead) {
 
-                    start();
-                }
         }
     }
     public  int getWidth(){
@@ -118,7 +119,24 @@ public class Test {
         return dead;
     }
 
-    public void restart(){
+    public void restart() {
+
+
+        rectangle.delete();
+        deleteCars(firstTrack);
+        deleteCars(secondTrack);
+        deleteCars(thirdTrack);
         dead=false;
+
     }
+
+    public void deleteCars(MoveCars[]track){
+        for (int i = 0; i < track.length; i++) {
+
+            track[i].getRectangle().delete();
+
+        }
+
+    }
+
 }
