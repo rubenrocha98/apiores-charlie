@@ -10,36 +10,59 @@ public class Test {
     private  int maxRows = 25;
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
-    private  Rectangle rectangle;
-    private MoveCars[] firstTrack = new MoveCars[4];
-    private MoveCars[] secondTrack = new MoveCars[2];
-    private MoveCars[] thirdTrack = new MoveCars[3];
+    private Rectangle duck;
+    private MoveObstacles[] firstTrack = new MoveObstacles[6];
+    private MoveObstacles[] secondTrack = new MoveObstacles[3];
+    private MoveObstacles[] thirdTrack = new MoveObstacles[6];
+    private MoveObstacles[] fourthTrack = new MoveObstacles[4];
 
     private boolean dead = false;
+
+    // trying to implement level cleared conditions
+
+    private boolean cleared = false;
+    private Rectangle levelObjective;
+
 
 
     public Test() {
 
-        Canvas canvas = Canvas.getInstance();
+        //Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
-        canvas.show(rec);
-        rectangle = new Rectangle(480, 450, 50, 50);
+        //canvas.show(rec);
+        duck = new Duck();
+
+        // when rectangle and levelObjective share the same position the level clears
+
+        levelObjective = new Rectangle(600, 10, 25, 25);
+
     }
 
     public void start() throws InterruptedException {
 
         while(true) {
-            rectangle.delete();
-            rectangle = new Rectangle(480, 450, 50, 50);
 
-            KeyListener keyboard = new KeyListener(rectangle, 20);
-            rectangle.setColor(Color.BLUE);
-            rectangle.fill();
+            if(cleared){
+                break;
+            }
+
+            duck.delete();
+            levelObjective.delete();
+            duck = new Duck();
+            levelObjective = new Rectangle(600, 10, 25, 25);
+
+            KeyListener keyboard = new KeyListener(duck, 10);
+            duck.setColor(Color.BLUE);
+            duck.fill();
+
+            levelObjective.setColor(Color.ORANGE);
+            levelObjective.fill();
 
 
-            createCars(firstTrack, 15, 200, 140);
-            createCars(secondTrack, -20, 500, 260);
-            createCars(thirdTrack, 15, 300, 320);
+            createObstacles(firstTrack, 12, 125, 140);
+            createObstacles(secondTrack, -20, 300, 330);
+            createObstacles(thirdTrack, 12, 150, 390);
+           // createObstacles(fourthTrack, -30,
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
             Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
@@ -47,29 +70,36 @@ public class Test {
             borderLeft.setColor(Color.BLUE);
             borderLeft.fill();
             borderRight.fill();
-            while (!dead) {
-                for (MoveCars car : firstTrack) {
-                    car.moveCarLeft();
-                    checkDead(car);
+            while (!dead && !cleared) {
+
+                checkCleared();
+
+                for (MoveObstacles obstacle : firstTrack) {
+                    obstacle.moveCarLeft();
+                    checkDead(obstacle);
 
                 }
-                for (MoveCars car : secondTrack) {
-                    car.moveCarLeft();
-                    checkDead(car);
+                for (MoveObstacles obstacle : secondTrack) {
+                    obstacle.moveCarLeft();
+                    checkDead(obstacle);
 
                 }
-                for (MoveCars car : thirdTrack) {
-                    car.moveCarLeft();
-                    checkDead(car);
+                for (MoveObstacles obstacle : thirdTrack) {
+                    obstacle.moveCarLeft();
+                    checkDead(obstacle);
                 }
                 Thread.sleep(75);
 
 
             }
-            rectangle.setColor(Color.RED);
+
+            if(dead){
+            duck.setColor(Color.RED);
+            }
 
             while (dead) {
-                System.out.println("You're dead");
+
+                System.out.println();
             }
 
 
@@ -84,36 +114,45 @@ public class Test {
         return height;
     }
 
-    public  Rectangle getRectangle(){
-        return rectangle;
+    public  Rectangle getDuck(){
+        return duck;
     }
 
 
 
-    public void createCars(MoveCars[]track,int speed, int atX,int atY){
+    public void createObstacles(MoveObstacles[]track,int speed, int atX,int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new MoveCars((i+1)*atX, atY,speed);
+            track[i] = new MoveObstacles((i+1)*atX, atY,speed);
 
         }
 
     }
 
 
-    public void checkDead(MoveCars car){
+    public void checkDead(MoveObstacles car){
 
 
-            for(int j = rectangle.getX(); j<=rectangle.getX()+rectangle.getWidth();j++) {
-                for(int k = rectangle.getY(); k<=rectangle.getY()+rectangle.getHeight();k++){
+            for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
+                for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
 
-                    if(car.getRectangle().getX() < j &&  car.getRectangle().getX()+car.getWidth() > j &&
-                        car.getRectangle().getY() < k && car.getRectangle().getY()+car.getHeight() >k){
+                    if(car.getObstacle().getX() < j &&  car.getObstacle().getX()+car.getWidth() > j &&
+                        car.getObstacle().getY() < k && car.getObstacle().getY()+car.getHeight() >k){
                         dead = true;
                     }
                 }
 
         }
     }
+
+    public void checkCleared(){
+        if(duck.getX() == levelObjective.getX() && duck.getY() == levelObjective.getY()){
+            duck.delete();
+            cleared = true;
+        }
+
+    }
+
 
     public boolean isDead() {
         return dead;
@@ -122,18 +161,20 @@ public class Test {
     public void restart() {
 
 
-        rectangle.delete();
+        duck.delete();
         deleteCars(firstTrack);
         deleteCars(secondTrack);
         deleteCars(thirdTrack);
+        levelObjective.delete();
+
         dead=false;
 
     }
 
-    public void deleteCars(MoveCars[]track){
+    public void deleteCars(MoveObstacles []track){
         for (int i = 0; i < track.length; i++) {
 
-            track[i].getRectangle().delete();
+            track[i].getObstacle().delete();
 
         }
 
