@@ -57,7 +57,7 @@ public class KeyListener implements KeyboardHandler {
 
 
 
-        if(Main.test.isDead()){
+        if(Main.level.isDead()){
             return;
         }
         switch (keyboardEvent.getKey()) {
@@ -65,7 +65,7 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_UP:
 
-                if(Main.test.getDuck().getY()-speed <10 ){
+                if(Main.level.getDuck().getY()-speed <10 ){
                     return;
                 }
                 movable.translate(0, -speed);
@@ -73,7 +73,7 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_DOWN:
 
-                if(Main.test.getDuck().getY()+speed > Main.test.getHeight()- Main.test.getDuck().getHeight()+10){
+                if(Main.level.getDuck().getY()+speed > Main.level.getHeight()- Main.level.getDuck().getHeight()+10){
                     return;
                 }
                 movable.translate(0, speed);
@@ -81,7 +81,7 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Main.test.getDuck().getX()+speed > Main.test.getWidth()-Main.test.getDuck().getWidth()-80){
+                if(Main.level.getDuck().getX()+speed > Main.level.getWidth()-Main.level.getDuck().getWidth()-80){
                     return;
                 }
                 movable.translate(speed, 0);
@@ -89,7 +89,7 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_LEFT:
 
-                if(Main.test.getDuck().getX()-speed< 100){
+                if(Main.level.getDuck().getX()-speed< 100){
                     return;
                 }
                 movable.translate(-speed, 0);
@@ -103,8 +103,8 @@ public class KeyListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()){
             case KeyboardEvent.KEY_R:
-                if(Main.test.isDead()){
-                    Main.test.restart();
+                if(Main.level.isDead()){
+                    Main.level.restart();
                 }
         }
 

@@ -11,9 +11,9 @@ public class Test {
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
     private Rectangle duck;
-    private MoveObstacles[] firstTrack = new MoveObstacles[6];
+    private MoveObstacles[] firstTrack = new MoveObstacles[5];
     private MoveObstacles[] secondTrack = new MoveObstacles[3];
-    private MoveObstacles[] thirdTrack = new MoveObstacles[6];
+    private MoveObstacles[] thirdTrack = new MoveObstacles[5];
     private MoveObstacles[] fourthTrack = new MoveObstacles[4];
 
     private boolean dead = false;
@@ -34,7 +34,7 @@ public class Test {
 
         // when rectangle and levelObjective share the same position the level clears
 
-        levelObjective = new Rectangle(600, 10, 25, 25);
+        levelObjective = new Rectangle(600, 10, 30, 30);
 
     }
 
@@ -49,9 +49,11 @@ public class Test {
             duck.delete();
             levelObjective.delete();
             duck = new Duck();
-            levelObjective = new Rectangle(600, 10, 25, 25);
+            levelObjective = new Rectangle(600, 10, 30, 30);
 
-            KeyListener keyboard = new KeyListener(duck, 15);
+            KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+
+
             duck.setColor(Color.BLUE);
             duck.fill();
 
@@ -59,10 +61,10 @@ public class Test {
             levelObjective.fill();
 
 
-            createObstacles(firstTrack, 12, 125, 140);
+            createObstacles(firstTrack, 20, 125, 140);
             createObstacles(secondTrack, -20, 290, 330);
             createObstacles(thirdTrack, 12, 150, 390);
-            createObstacles(fourthTrack, -30, 245, 200);
+            createObstacles(fourthTrack, -20, 245, 200);
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
             Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
