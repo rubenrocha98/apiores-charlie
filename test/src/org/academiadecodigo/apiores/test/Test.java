@@ -27,9 +27,9 @@ public class Test {
 
     public Test() {
 
-        //Canvas canvas = Canvas.getInstance();
+        Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
-        //canvas.show(rec);
+        canvas.show(rec);
         duck = new Duck();
 
         // when rectangle and levelObjective share the same position the level clears
@@ -62,7 +62,7 @@ public class Test {
             createObstacles(firstTrack, 12, 125, 140);
             createObstacles(secondTrack, -20, 300, 330);
             createObstacles(thirdTrack, 12, 150, 390);
-           // createObstacles(fourthTrack, -30,
+            createObstacles(fourthTrack, -30, 250, 200);
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
             Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
@@ -85,6 +85,11 @@ public class Test {
 
                 }
                 for (MoveObstacles obstacle : thirdTrack) {
+                    obstacle.moveCarLeft();
+                    checkDead(obstacle);
+                }
+
+                for (MoveObstacles obstacle : fourthTrack) {
                     obstacle.moveCarLeft();
                     checkDead(obstacle);
                 }
@@ -165,6 +170,7 @@ public class Test {
         deleteCars(firstTrack);
         deleteCars(secondTrack);
         deleteCars(thirdTrack);
+        deleteCars(fourthTrack);
         levelObjective.delete();
 
         dead=false;
