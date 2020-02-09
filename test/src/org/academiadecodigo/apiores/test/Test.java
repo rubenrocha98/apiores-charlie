@@ -10,7 +10,7 @@ public class Test {
     private  int maxRows = 25;
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
-    private  Rectangle rectangle;
+    private  Rectangle duck;
     private MoveCars[] firstTrack = new MoveCars[4];
     private MoveCars[] secondTrack = new MoveCars[2];
     private MoveCars[] thirdTrack = new MoveCars[3];
@@ -29,7 +29,7 @@ public class Test {
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
         canvas.show(rec);
-        rectangle = new Rectangle(480, 450, 50, 50);
+        duck = new Rectangle(480, 450, 50, 50);
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -44,14 +44,14 @@ public class Test {
                 break;
             }
 
-            rectangle.delete();
+            duck.delete();
             levelObjective.delete();
-            rectangle = new Rectangle(480, 450, 50, 50);
+            duck = new Rectangle(480, 450, 50, 50);
             levelObjective = new Rectangle(600, 10, 50, 50);
 
-            KeyListener keyboard = new KeyListener(rectangle, 20);
-            rectangle.setColor(Color.BLUE);
-            rectangle.fill();
+            KeyListener keyboard = new KeyListener(duck, 20);
+            duck.setColor(Color.BLUE);
+            duck.fill();
 
             levelObjective.setColor(Color.ORANGE);
             levelObjective.fill();
@@ -91,7 +91,7 @@ public class Test {
             }
 
             if(dead){
-            rectangle.setColor(Color.RED);
+            duck.setColor(Color.RED);
             }
 
             while (dead) {
@@ -111,8 +111,8 @@ public class Test {
         return height;
     }
 
-    public  Rectangle getRectangle(){
-        return rectangle;
+    public  Rectangle getDuck(){
+        return duck;
     }
 
 
@@ -130,8 +130,8 @@ public class Test {
     public void checkDead(MoveCars car){
 
 
-            for(int j = rectangle.getX(); j<=rectangle.getX()+rectangle.getWidth();j++) {
-                for(int k = rectangle.getY(); k<=rectangle.getY()+rectangle.getHeight();k++){
+            for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
+                for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
 
                     if(car.getRectangle().getX() < j &&  car.getRectangle().getX()+car.getWidth() > j &&
                         car.getRectangle().getY() < k && car.getRectangle().getY()+car.getHeight() >k){
@@ -143,8 +143,8 @@ public class Test {
     }
 
     public void checkCleared(){
-        if(rectangle.getX() == levelObjective.getX() && rectangle.getY() == levelObjective.getY()){
-
+        if(duck.getX() == levelObjective.getX() && duck.getY() == levelObjective.getY()){
+            duck.delete();
             cleared = true;
         }
 
@@ -158,7 +158,7 @@ public class Test {
     public void restart() {
 
 
-        rectangle.delete();
+        duck.delete();
         deleteCars(firstTrack);
         deleteCars(secondTrack);
         deleteCars(thirdTrack);
