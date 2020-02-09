@@ -10,11 +10,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class KeyListener implements KeyboardHandler {
 
     private Movable movable;
+    private int speed;
 
+    public KeyListener(Movable movable,int speed){
 
-    public KeyListener(Movable movable){
-
-
+        this.speed = speed;
         this.movable = movable;
 
 
@@ -40,6 +40,11 @@ public class KeyListener implements KeyboardHandler {
         rightArrow.setKey(KeyboardEvent.KEY_RIGHT);
         keyboard.addEventListener(rightArrow);
 
+        KeyboardEvent rKey = new KeyboardEvent();
+        rKey.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        rKey.setKey(KeyboardEvent.KEY_R);
+        keyboard.addEventListener(rKey);
+
 
 
 
@@ -52,6 +57,9 @@ public class KeyListener implements KeyboardHandler {
 
 
 
+        if(Main.test.isDead()){
+            return;
+        }
         switch (keyboardEvent.getKey()) {
 
 
@@ -60,7 +68,7 @@ public class KeyListener implements KeyboardHandler {
                 if(Main.test.getRectangle().getY() ==10 ){
                     return;
                 }
-                movable.translate(0, -10);
+                movable.translate(0, -speed);
                 break;
 
             case KeyboardEvent.KEY_DOWN:
@@ -68,27 +76,24 @@ public class KeyListener implements KeyboardHandler {
                 if(Main.test.getRectangle().getY() == Main.test.getHeight()- Main.test.getRectangle().getHeight()+10){
                     return;
                 }
-                movable.translate(0, 10);
+                movable.translate(0, speed);
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Main.test.getRectangle().getX() == Main.test.getWidth()-Main.test.getRectangle().getWidth()+10){
+                if(Main.test.getRectangle().getX() == Main.test.getWidth()-Main.test.getRectangle().getWidth()-80){
                     return;
                 }
-                movable.translate(10, 0);
+                movable.translate(speed, 0);
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
-                if(Main.test.getRectangle().getX() == 10){
+                if(Main.test.getRectangle().getX() == 100){
                     return;
                 }
-                movable.translate(-10, 0);
+                movable.translate(-speed, 0);
                 break;
-
-
-
 
         }
     }
@@ -96,7 +101,12 @@ public class KeyListener implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-
+        switch (keyboardEvent.getKey()){
+            case KeyboardEvent.KEY_R:
+                if(Main.test.isDead()){
+                    Main.test.restart();
+                }
+        }
 
     }
 
