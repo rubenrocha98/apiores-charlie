@@ -43,4 +43,13 @@ public class MoveCars {
     public Rectangle getRectangle() {
         return rectangle;
     }
+
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

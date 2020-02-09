@@ -25,47 +25,55 @@ public class Test {
 
     }
 
-    public void start() throws InterruptedException{
+    public void start() throws InterruptedException {
+
+        while (true) {
+
+            rectangle = new Rectangle(480, 450, 50, 50);
+            KeyListener keyboard = new KeyListener(rectangle, 20);
+            rectangle.setColor(Color.BLUE);
+            rectangle.fill();
 
 
-        rectangle = new Rectangle(470, 450, 50, 50);
-        KeyListener keyboard = new KeyListener(rectangle,20);
+            createCars(firstTrack, 30, 200, 140);
+            createCars(secondTrack, -20, 500, 260);
+            createCars(thirdTrack, 30, 300, 320);
 
-        rectangle.fill();
+            Rectangle borderLeft = new Rectangle(10, 10, 90, height);
+            Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
+            borderRight.setColor(Color.BLUE);
+            borderLeft.setColor(Color.BLUE);
+            borderLeft.fill();
+            borderRight.fill();
+            while (!dead) {
+                for (MoveCars car : firstTrack) {
+                    car.moveCarLeft();
+                    checkDead(car);
 
+                }
+                for (MoveCars car : secondTrack) {
+                    car.moveCarLeft();
+                    checkDead(car);
 
-        createCars(firstTrack,15,200,140);
-        createCars(secondTrack,-20, 500,260);
-        createCars(thirdTrack,15,300,320);
+                }
+                for (MoveCars car : thirdTrack) {
+                    car.moveCarLeft();
+                    checkDead(car);
+                }
+                System.out.println(dead);
+                Thread.sleep(75);
 
-        Rectangle borderLeft = new Rectangle(10,10, 90,height);
-        Rectangle borderRight = new Rectangle(width-80,10,90,height);
-        borderRight.setColor(Color.BLUE);
-        borderLeft.setColor(Color.BLUE);
-        borderLeft.fill();
-        borderRight.fill();
-        while(dead = false){
-            for (MoveCars car : firstTrack) {
-                car.moveCarLeft();
-                checkDead(firstTrack);
 
             }
-            for (MoveCars car: secondTrack) {
-                car.moveCarLeft();
-
-            }
-            for(MoveCars car: thirdTrack){
-                car.moveCarLeft();
-            }
-            Thread.sleep(75);
+            rectangle.setColor(Color.RED);
 
 
+                if (!dead) {
 
+                    start();
+                }
         }
-
-
     }
-
     public  int getWidth(){
         return width;
 
@@ -91,17 +99,26 @@ public class Test {
     }
 
 
-    public void checkDead(MoveCars[] track){
-0
-        for (int i = 0; i < track.length ; i++) {
+    public void checkDead(MoveCars car){
 
-            for(int j = rectangle.getX(); j<=rectangle.getX()+width){
-                for(int k = rectangle.getY(); k<=rectangle.getY()+height){
-                    if(get)
+
+            for(int j = rectangle.getX(); j<=rectangle.getX()+rectangle.getWidth();j++) {
+                for(int k = rectangle.getY(); k<=rectangle.getY()+rectangle.getHeight();k++){
+
+                    if(car.getRectangle().getX() < j &&  car.getRectangle().getX()+car.getWidth() > j &&
+                        car.getRectangle().getY() < k && car.getRectangle().getY()+car.getHeight() >k){
+                        dead = true;
+                    }
                 }
-            }
 
         }
-        dead = true;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void restart(){
+        dead=false;
     }
 }

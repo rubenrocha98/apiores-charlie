@@ -40,6 +40,11 @@ public class KeyListener implements KeyboardHandler {
         rightArrow.setKey(KeyboardEvent.KEY_RIGHT);
         keyboard.addEventListener(rightArrow);
 
+        KeyboardEvent rKey = new KeyboardEvent();
+        rKey.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        rKey.setKey(KeyboardEvent.KEY_R);
+        keyboard.addEventListener(rKey);
+
 
 
 
@@ -49,9 +54,17 @@ public class KeyListener implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
+        switch (keyboardEvent.getKey()){
+            case KeyboardEvent.KEY_R:
+                if(Main.test.isDead()){
+                    Main.test.restart();
+                }
+        }
 
 
-
+        if(Main.test.isDead()){
+            return;
+        }
         switch (keyboardEvent.getKey()) {
 
 
@@ -89,7 +102,10 @@ public class KeyListener implements KeyboardHandler {
 
 
 
+            case KeyboardEvent.KEY_R:
+                if(Main.test.isDead()){
 
+                }
         }
     }
 
