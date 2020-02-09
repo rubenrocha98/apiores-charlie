@@ -26,10 +26,10 @@ public class Test {
 
 
     public Test() {
-
-        //Canvas canvas = Canvas.getInstance();
+m
+        Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
-        //canvas.show(rec);
+        canvas.show(rec);
         duck = new Duck();
 
         // when rectangle and levelObjective share the same position the level clears
