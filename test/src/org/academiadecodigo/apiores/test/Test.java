@@ -11,7 +11,6 @@ public class Test {
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
     private  Rectangle rectangle;
-    private KeyListener keyboard;
     private MoveCars[] firstTrack = new MoveCars[4];
     private MoveCars[] secondTrack = new MoveCars[2];
     private MoveCars[] thirdTrack = new MoveCars[3];
@@ -30,7 +29,7 @@ public class Test {
 
 
         rectangle = new Rectangle(470, 450, 50, 50);
-        keyboard = new KeyListener(rectangle,20);
+        KeyListener keyboard = new KeyListener(rectangle,20);
 
         rectangle.fill();
 
@@ -45,10 +44,10 @@ public class Test {
         borderLeft.setColor(Color.BLUE);
         borderLeft.fill();
         borderRight.fill();
-        while(true){
+        while(dead = false){
             for (MoveCars car : firstTrack) {
                 car.moveCarLeft();
-
+                checkDead(firstTrack);
 
             }
             for (MoveCars car: secondTrack) {
@@ -92,9 +91,17 @@ public class Test {
     }
 
 
-    public boolean checkDead(MoveCars[] track){
+    public void checkDead(MoveCars[] track){
+0
+        for (int i = 0; i < track.length ; i++) {
 
-            if()
+            for(int j = rectangle.getX(); j<=rectangle.getX()+width){
+                for(int k = rectangle.getY(); k<=rectangle.getY()+height){
+                    if(get)
+                }
+            }
+
+        }
         dead = true;
     }
 }
