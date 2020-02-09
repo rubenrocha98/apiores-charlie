@@ -18,7 +18,7 @@ public class MoveCars {
 
     }
 
-    public void moveCarLeft(){
+    public void moveCarTrack(){
         rectangle.fill();
         rectangle.translate(-10,0);
         if(rectangle2.isFilled()){

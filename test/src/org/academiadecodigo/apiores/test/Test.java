@@ -30,7 +30,7 @@ public class Test {
         rectangle.fill();
         MoveCars car = createCars();
         while(true){
-            car.moveCarLeft();
+            car.moveCarTrack();
             Thread.sleep(50);
         }
 
