@@ -2,12 +2,12 @@ package org.academiadecodigo.apiores.test;
 
 public class Main {
 
-    public static Test test;
+    public static LevelDesign level;
     public static void main(String[] args) throws InterruptedException{
 
-        test = new Test();
+        level = new Level1();
 
-        test.start();
+        level.start();
 
     }
 }
