@@ -69,7 +69,7 @@ public class Test {
             rectangle.setColor(Color.RED);
 
             while (dead) {
-                System.out.println();
+                System.out.println("You're dead");
             }
 
 
