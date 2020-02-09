@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Duck extends Rectangle{
 
     public Duck(){
-        super(480, 450, 50, 50);
+        super(480, 450, 25, 25);
     }
 
 

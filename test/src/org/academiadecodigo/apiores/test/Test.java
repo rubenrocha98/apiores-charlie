@@ -34,7 +34,7 @@ public class Test {
 
         // when rectangle and levelObjective share the same position the level clears
 
-        levelObjective = new Rectangle(600, 10, 50, 50);
+        levelObjective = new Rectangle(600, 10, 25, 25);
 
     }
 
@@ -48,10 +48,10 @@ public class Test {
 
             duck.delete();
             levelObjective.delete();
-            duck = new Rectangle(480, 450, 25, 25);
-            levelObjective = new Rectangle(600, 10, 50, 50);
+            duck = new Duck();
+            levelObjective = new Rectangle(600, 10, 25, 25);
 
-            KeyListener keyboard = new KeyListener(duck, 20);
+            KeyListener keyboard = new KeyListener(duck, 10);
             duck.setColor(Color.BLUE);
             duck.fill();
 
@@ -59,9 +59,9 @@ public class Test {
             levelObjective.fill();
 
 
-            createObstacles(firstTrack, 15, 125, 140);
+            createObstacles(firstTrack, 12, 125, 140);
             createObstacles(secondTrack, -20, 300, 330);
-            createObstacles(thirdTrack, 15, 150, 390);
+            createObstacles(thirdTrack, 12, 150, 390);
            // createObstacles(fourthTrack, -30,
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
