@@ -65,7 +65,11 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_UP:
 
+<<<<<<< HEAD
                 if(Main.level.getDuck().getY()-speed <10 ){
+=======
+                if(Main.test.getDuck().getY()-speed <10 ){
+>>>>>>> d52279ffb16451d51ffe64dc6bcf2e2e576b8cc7
                     return;
                 }
                 movable.translate(0, -speed);
@@ -73,7 +77,11 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_DOWN:
 
+<<<<<<< HEAD
                 if(Main.level.getDuck().getY()+speed > Main.level.getHeight()- Main.level.getDuck().getHeight()+10){
+=======
+                if(Main.test.getDuck().getY()+speed > Main.test.getHeight()- Main.test.getDuck().getHeight()+10){
+>>>>>>> d52279ffb16451d51ffe64dc6bcf2e2e576b8cc7
                     return;
                 }
                 movable.translate(0, speed);
@@ -81,7 +89,11 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_RIGHT:
 
+<<<<<<< HEAD
                 if(Main.level.getDuck().getX()+speed > Main.level.getWidth()-Main.level.getDuck().getWidth()-80){
+=======
+                if(Main.test.getDuck().getX()+speed > Main.test.getWidth()-Main.test.getDuck().getWidth()-80){
+>>>>>>> d52279ffb16451d51ffe64dc6bcf2e2e576b8cc7
                     return;
                 }
                 movable.translate(speed, 0);
@@ -89,7 +101,11 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_LEFT:
 
+<<<<<<< HEAD
                 if(Main.level.getDuck().getX()-speed < 100){
+=======
+                if(Main.test.getDuck().getX()-speed< 100){
+>>>>>>> d52279ffb16451d51ffe64dc6bcf2e2e576b8cc7
                     return;
                 }
                 movable.translate(-speed, 0);
