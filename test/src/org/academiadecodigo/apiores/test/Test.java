@@ -51,7 +51,7 @@ public class Test {
             duck = new Duck();
             levelObjective = new Rectangle(600, 10, 25, 25);
 
-            KeyListener keyboard = new KeyListener(duck, 10);
+            KeyListener keyboard = new KeyListener(duck, 15);
             duck.setColor(Color.BLUE);
             duck.fill();
 
@@ -60,9 +60,9 @@ public class Test {
 
 
             createObstacles(firstTrack, 12, 125, 140);
-            createObstacles(secondTrack, -20, 300, 330);
+            createObstacles(secondTrack, -20, 290, 330);
             createObstacles(thirdTrack, 12, 150, 390);
-            createObstacles(fourthTrack, -30, 250, 200);
+            createObstacles(fourthTrack, -30, 245, 200);
 
             Rectangle borderLeft = new Rectangle(10, 10, 90, height);
             Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
