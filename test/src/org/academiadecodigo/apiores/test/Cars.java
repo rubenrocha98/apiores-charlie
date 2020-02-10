@@ -2,7 +2,7 @@ package org.academiadecodigo.apiores.test;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class MoveObstacles {
+public class Cars extends Obstacles{
 
     private int height= 25;
     private int width= 40;
@@ -13,7 +13,7 @@ public class MoveObstacles {
 
 
 
-    public MoveObstacles(int atX, int atY, int speed){
+    public Cars(int atX, int atY, int speed){
         obstacle = new Rectangle(atX-width, atY,width,height);
         this.speed = speed;
         this.atX = atX;
@@ -21,7 +21,7 @@ public class MoveObstacles {
         obstacle.fill();
     }
 
-    public void moveCarLeft(){
+    public void moveObstacle(){
 
         obstacle.translate(-speed,0);
 
@@ -34,7 +34,7 @@ public class MoveObstacles {
             obstacle.translate(900,0);
         }
         if(obstacle.getX() > 920){
-            obstacle.translate(-920,0);
+            obstacle.translate(-900,0);
         }
 
 
@@ -52,4 +52,5 @@ public class MoveObstacles {
     public int getHeight() {
         return height;
     }
+
 }

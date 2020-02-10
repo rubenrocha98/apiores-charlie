@@ -31,9 +31,13 @@ public abstract class LevelStructure {
 
      public  abstract Rectangle getDuck();
 
-     public abstract void createObstacles(MoveObstacles[]track,int speed, int atX,int atY);
+     public abstract void createCars(Cars[]track, int speed, int atX, int atY);
 
-     public abstract void checkDead(MoveObstacles car);
+     public abstract void createBuses(Buses[]track, int speed, int atX, int atY);
+
+     public abstract void createRobots(Robots[]track, int speed, int atX, int atY);
+
+     public abstract void checkDead(Obstacles obstacles);
 
      public abstract void checkCleared();
 
@@ -41,7 +45,7 @@ public abstract class LevelStructure {
 
      public abstract void restart();
 
-     public abstract void deleteCars(MoveObstacles []track);
+     public abstract void deleteCars(Obstacles[]track);
 
 
 

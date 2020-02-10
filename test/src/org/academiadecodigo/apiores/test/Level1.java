@@ -14,10 +14,12 @@ public class Level1 extends LevelStructure {
         private final  int width = cellSize * maxCols + PADDING;
         private final  int height = cellSize * maxRows + PADDING;
         private Rectangle duck;
-        private MoveObstacles[] firstTrack = new MoveObstacles[5];
-        private MoveObstacles[] secondTrack = new MoveObstacles[3];
-        private MoveObstacles[] thirdTrack = new MoveObstacles[5];
-        private MoveObstacles[] fourthTrack = new MoveObstacles[4];
+        private Cars[] firstTrack = new Cars[5];
+        private Cars[] secondTrack = new Cars[3];
+        private Cars[] thirdTrack = new Cars[5];
+        private Cars[] fourthTrack = new Cars[4];
+
+        private LevelStructure level2;
 
         private boolean dead = false;
 
@@ -46,7 +48,8 @@ public class Level1 extends LevelStructure {
             while(true) {
 
                 if(cleared){
-                    break;
+                    clearLevel();
+                    level2.start();
                 }
 
                 duck.delete();
@@ -64,10 +67,10 @@ public class Level1 extends LevelStructure {
                 levelObjective.fill();
 
 
-                createObstacles(firstTrack, 20, 125, 140);
-                createObstacles(secondTrack, -20, 290, 330);
-                createObstacles(thirdTrack, 12, 150, 390);
-                createObstacles(fourthTrack, -20, 245, 200);
+                createCars(firstTrack, 20, 125, 140);
+                createCars(secondTrack, -20, 290, 330);
+                createCars(thirdTrack, 12, 150, 390);
+                createCars(fourthTrack, -20, 245, 200);
 
                 Rectangle borderLeft = new Rectangle(10, 10, 90, height);
                 Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
@@ -79,23 +82,23 @@ public class Level1 extends LevelStructure {
 
                     checkCleared();
 
-                    for (MoveObstacles obstacle : firstTrack) {
-                        obstacle.moveCarLeft();
+                    for (Cars obstacle : firstTrack) {
+                        obstacle.moveObstacle();
                         checkDead(obstacle);
 
                     }
-                    for (MoveObstacles obstacle : secondTrack) {
-                        obstacle.moveCarLeft();
+                    for (Cars obstacle : secondTrack) {
+                        obstacle.moveObstacle();
                         checkDead(obstacle);
 
                     }
-                    for (MoveObstacles obstacle : thirdTrack) {
-                        obstacle.moveCarLeft();
+                    for (Cars obstacle : thirdTrack) {
+                        obstacle.moveObstacle();
                         checkDead(obstacle);
                     }
 
-                    for (MoveObstacles obstacle : fourthTrack) {
-                        obstacle.moveCarLeft();
+                    for (Cars obstacle : fourthTrack) {
+                        obstacle.moveObstacle();
                         checkDead(obstacle);
                     }
                     Thread.sleep(75);
@@ -115,6 +118,7 @@ public class Level1 extends LevelStructure {
 
             }
         }
+
         public  int getWidth(){
             return width;
 
@@ -130,24 +134,34 @@ public class Level1 extends LevelStructure {
 
 
 
-        public void createObstacles(MoveObstacles[]track,int speed, int atX,int atY){
+        public void createCars(Cars[]track, int speed, int atX, int atY){
             for (int i = 0; i < track.length; i++) {
 
-                track[i] = new MoveObstacles((i+1)*atX, atY,speed);
+                track[i] = new Cars((i+1)*atX, atY,speed);
 
             }
 
         }
 
+        public void createBuses(Buses[]track, int speed, int atX, int atY){
 
-        public void checkDead(MoveObstacles car){
+            System.out.println();
+        }
+
+        public void createRobots(Robots[]track, int speed, int atX, int atY){
+
+            System.out.println();
+        }
+
+
+        public void checkDead(Obstacles obstacle){
 
 
             for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
                 for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
 
-                    if(car.getObstacle().getX() < j &&  car.getObstacle().getX()+car.getWidth() > j &&
-                            car.getObstacle().getY() < k && car.getObstacle().getY()+car.getHeight() >k){
+                    if(obstacle.getObstacle().getX() < j &&  obstacle.getObstacle().getX()+obstacle.getWidth() > j &&
+                            obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY()+obstacle.getHeight() >k){
                         dead = true;
                     }
                 }
@@ -182,7 +196,20 @@ public class Level1 extends LevelStructure {
 
         }
 
-        public void deleteCars(MoveObstacles []track){
+
+        public void clearLevel(){
+            duck.delete();
+            deleteCars(firstTrack);
+            deleteCars(secondTrack);
+            deleteCars(thirdTrack);
+            deleteCars(fourthTrack);
+            levelObjective.delete();
+
+            dead=false;
+
+        }
+
+        public void deleteCars(Obstacles[]track){
             for (int i = 0; i < track.length; i++) {
 
                 track[i].getObstacle().delete();
@@ -190,5 +217,7 @@ public class Level1 extends LevelStructure {
             }
 
         }
+
+
 
 }

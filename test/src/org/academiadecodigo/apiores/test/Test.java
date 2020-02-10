@@ -11,10 +11,10 @@ public class Test {
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
     private Rectangle duck;
-    private MoveObstacles[] firstTrack = new MoveObstacles[5];
-    private MoveObstacles[] secondTrack = new MoveObstacles[3];
-    private MoveObstacles[] thirdTrack = new MoveObstacles[5];
-    private MoveObstacles[] fourthTrack = new MoveObstacles[4];
+    private Cars[] firstTrack = new Cars[5];
+    private Cars[] secondTrack = new Cars[3];
+    private Cars[] thirdTrack = new Cars[5];
+    private Cars[] fourthTrack = new Cars[4];
 
     private boolean dead = false;
 
@@ -76,23 +76,23 @@ public class Test {
 
                 checkCleared();
 
-                for (MoveObstacles obstacle : firstTrack) {
-                    obstacle.moveCarLeft();
+                for (Cars obstacle : firstTrack) {
+                    obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (MoveObstacles obstacle : secondTrack) {
-                    obstacle.moveCarLeft();
+                for (Cars obstacle : secondTrack) {
+                    obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (MoveObstacles obstacle : thirdTrack) {
-                    obstacle.moveCarLeft();
+                for (Cars obstacle : thirdTrack) {
+                    obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
 
-                for (MoveObstacles obstacle : fourthTrack) {
-                    obstacle.moveCarLeft();
+                for (Cars obstacle : fourthTrack) {
+                    obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
                 Thread.sleep(75);
@@ -127,24 +127,24 @@ public class Test {
 
 
 
-    public void createObstacles(MoveObstacles[]track,int speed, int atX,int atY){
+    public void createObstacles(Cars[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new MoveObstacles((i+1)*atX, atY,speed);
+            track[i] = new Cars((i+1)*atX, atY,speed);
 
         }
 
     }
 
 
-    public void checkDead(MoveObstacles car){
+    public void checkDead(Cars cars){
 
 
             for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
                 for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
 
-                    if(car.getObstacle().getX() < j &&  car.getObstacle().getX()+car.getWidth() > j &&
-                        car.getObstacle().getY() < k && car.getObstacle().getY()+car.getHeight() >k){
+                    if(cars.getObstacle().getX() < j &&  cars.getObstacle().getX()+ cars.getWidth() > j &&
+                        cars.getObstacle().getY() < k && cars.getObstacle().getY()+ cars.getHeight() >k){
                         dead = true;
                     }
                 }
@@ -179,7 +179,7 @@ public class Test {
 
     }
 
-    public void deleteCars(MoveObstacles []track){
+    public void deleteCars(Cars[]track){
         for (int i = 0; i < track.length; i++) {
 
             track[i].getObstacle().delete();
