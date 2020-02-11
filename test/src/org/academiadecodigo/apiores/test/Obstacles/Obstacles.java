@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.Obstacles;
 
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;

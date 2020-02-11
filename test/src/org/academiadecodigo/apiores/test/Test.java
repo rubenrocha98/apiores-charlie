@@ -1,4 +1,6 @@
 package org.academiadecodigo.apiores.test;
+import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
+import org.academiadecodigo.apiores.test.Obstacles.Cars;
 import org.academiadecodigo.simplegraphics.graphics.*;
 
 

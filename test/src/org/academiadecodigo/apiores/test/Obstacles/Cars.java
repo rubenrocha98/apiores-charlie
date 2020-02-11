@@ -1,8 +1,9 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.Obstacles;
 
+import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class Cars extends Obstacles{
+public class Cars extends Obstacles {
 
     private int height= 25;
     private int width= 40;

@@ -1,5 +1,8 @@
 package org.academiadecodigo.apiores.test;
 
+import org.academiadecodigo.apiores.test.Levels.Level2;
+import org.academiadecodigo.apiores.test.Levels.LevelStructure;
+
 public class Main {
 
     public static LevelStructure level;

@@ -1,11 +1,12 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.Levels;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Shape;
 
-public class Level2 extends LevelStructure{
+import org.academiadecodigo.apiores.test.Duck;
+import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
+import org.academiadecodigo.apiores.test.Obstacles.*;
+import org.academiadecodigo.simplegraphics.graphics.*;
+
+public class Level2 extends LevelStructure {
 
     private final int PADDING = 10;
     private  int cellSize= 20;

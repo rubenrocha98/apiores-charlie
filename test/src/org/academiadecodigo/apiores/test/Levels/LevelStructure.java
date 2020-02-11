@@ -1,5 +1,8 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.Levels;
 
+import org.academiadecodigo.apiores.test.Obstacles.Cars;
+import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
+import org.academiadecodigo.apiores.test.Obstacles.Robots;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public abstract class LevelStructure {
@@ -31,11 +34,7 @@ public abstract class LevelStructure {
 
      public  abstract Rectangle getDuck();
 
-     public abstract void createCars(Cars[]track, int speed, int atX, int atY);
-
-     public abstract void createBuses(Buses[]track, int speed, int atX, int atY);
-
-     public abstract void createRobots(Robots[]track, int speed, int atX, int atY);
+     public abstract void createObstacles(Obstacles[], int speed, int atX, int atY);
 
      public abstract void checkDead(Obstacles obstacles);
 

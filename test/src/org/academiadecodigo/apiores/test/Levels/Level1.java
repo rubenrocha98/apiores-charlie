@@ -1,5 +1,10 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.Levels;
 
+import org.academiadecodigo.apiores.test.Duck;
+import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
+import org.academiadecodigo.apiores.test.Obstacles.Cars;
+import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
+import org.academiadecodigo.apiores.test.Obstacles.Robots;
 import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -143,7 +148,7 @@ public class Level1 extends LevelStructure {
 
         }
 
-        public void createBuses(Buses[]track, int speed, int atX, int atY){
+        public void createObstacles(Buses[]track, int speed, int atX, int atY){
 
             System.out.println();
         }
