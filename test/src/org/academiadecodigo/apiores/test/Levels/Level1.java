@@ -92,7 +92,7 @@ public class Level1 extends LevelStructure {
                 Thread.sleep(1500);
                 restartLevel();
             }
-            if(lives == 0) {
+            while(lives == 0) {
                 System.out.println();
             }
 
