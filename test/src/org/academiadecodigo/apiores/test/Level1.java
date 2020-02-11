@@ -170,7 +170,7 @@ public class Level1 extends LevelStructure {
         }
 
         public void checkCleared(){
-            if(duck.getX() == levelObjective.getX() && duck.getY() == levelObjective.getY()){
+            if( duck.getY() == levelObjective.getY()){
                 duck.delete();
                 cleared = true;
             }

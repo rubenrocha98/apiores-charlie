@@ -5,7 +5,7 @@ public class Main {
     public static LevelStructure level;
     public static void main(String[] args) throws InterruptedException{
 
-        level = new Level2();
+        level = new Level1();
 
         level.start();
 

@@ -54,13 +54,5 @@ public class Buses extends Obstacles{
             return height;
         }
 
-    public void createObstacles(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
-
-            track[i] = new Buses((i+1)*atX, atY,speed);
-
-        }
-
-    }
     }
 
