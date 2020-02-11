@@ -3,22 +3,16 @@ package org.academiadecodigo.apiores.test.Obstacles;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public abstract class Obstacles{
+public interface Obstacles{
 
-    private int height;
-    private int width;
-    private Rectangle obstacle;
-    private int speed;
-    private int atX;
-    private int atY;
 
-    public abstract void moveObstacle();
+     void moveObstacle();
 
-    public abstract Rectangle getObstacle();
+     Rectangle getObstacle();
 
-    public abstract int getWidth();
+     int getWidth();
 
-    public abstract int getHeight();
+     int getHeight();
 
 
 

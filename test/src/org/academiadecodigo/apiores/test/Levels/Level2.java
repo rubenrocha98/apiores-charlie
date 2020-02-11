@@ -9,17 +9,14 @@ import org.academiadecodigo.simplegraphics.graphics.*;
 public class Level2 extends LevelStructure {
 
     private final int PADDING = 10;
-    private  int cellSize= 20;
-    private int  maxCols = 50;
-    private  int maxRows = 25;
-    private final  int width = cellSize * maxCols + PADDING;
-    private final  int height = cellSize * maxRows + PADDING;
+    private final  int width =  1000+ PADDING;
+    private final  int height =  500+ PADDING;
     private Rectangle duck;
-    private Cars[] firstTrack = new Cars[5];
-    private Buses[] secondTrack = new Buses[3];
-    private Cars[] thirdTrack = new Cars[5];
-    private Cars[] fourthTrack = new Cars[4];
-    private Cars[] fifthTrack = new Cars[4];
+    private Car[] firstTrack = new Car[5];
+    private Bus[] secondTrack = new Bus[3];
+    private Car[] thirdTrack = new Car[5];
+    private Car[] fourthTrack = new Car[4];
+    private Car[] fifthTrack = new Car[4];
 
 
 
@@ -52,58 +49,33 @@ public class Level2 extends LevelStructure {
             if(cleared){
                 break;
             }
-
-            duck.delete();
-            levelObjective.delete();
-            duck = new Duck();
-            levelObjective = new Rectangle(600, 10, 30, 30);
-
+            createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
 
-
-            duck.setColor(Color.BLUE);
-            duck.fill();
-
-            levelObjective.setColor(Color.ORANGE);
-            levelObjective.fill();
-
-
-            createCars(firstTrack, 15, 145, 400);
-            createBuses(secondTrack, 15, 250, 350);
-            createCars(thirdTrack, -15, 150, 250);
-            createCars(fourthTrack, 15, 145, 150);
-            createCars(fifthTrack, -12, 115, 100);
-
-            Rectangle borderLeft = new Rectangle(10, 10, 90, height);
-            Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
-            borderRight.setColor(Color.BLUE);
-            borderLeft.setColor(Color.BLUE);
-            borderLeft.fill();
-            borderRight.fill();
             while (!dead && !cleared) {
 
                 checkCleared();
 
-                for (Cars obstacle : firstTrack) {
+                for (Car obstacle : firstTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (Buses obstacle : secondTrack) {
+                for (Bus obstacle : secondTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (Cars obstacle : thirdTrack) {
+                for (Car obstacle : thirdTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
 
-                for (Cars obstacle : fourthTrack) {
+                for (Car obstacle : fourthTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
-                for (Cars obstacle : fifthTrack) {
+                for (Car obstacle : fifthTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
@@ -116,9 +88,12 @@ public class Level2 extends LevelStructure {
             if(dead){
                 duck.setColor(Color.RED);
             }
-
-            while (dead) {
-
+            if(dead){
+                lives--;
+                Thread.sleep(1500);
+                restartLevel();
+            }
+            while(lives ==0){
                 System.out.println();
             }
 
@@ -138,28 +113,30 @@ public class Level2 extends LevelStructure {
         return duck;
     }
 
+    public void createObstacles(Obstacles[]track,int speed,int atX,int atY){
 
+    }
 
-    public void createCars(Cars[]track, int speed, int atX, int atY){
+    public void createCars(Car[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Cars((i + 1) * atX, atY, speed) {
+            track[i] = new Car((i + 1) * atX, atY, speed) {
             };
 
         }
 
     }
 
-    public void createBuses(Buses[]track, int speed, int atX, int atY){
+    public void createBuses(Bus[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Buses((i + 1) * atX, atY, speed) {
+            track[i] = new Bus((i + 1) * atX, atY, speed) {
             };
 
         }
     }
 
-    public void createRobots(Robots[]track, int speed, int atX, int atY){
+    public void createRobots(Robot[]track, int speed, int atX, int atY){
 
         System.out.println();
     }
@@ -180,22 +157,19 @@ public class Level2 extends LevelStructure {
         }
     }
 
-    public void checkCleared(){
+    public boolean checkCleared(){
         if(duck.getX() == levelObjective.getX() && duck.getY() == levelObjective.getY()){
             duck.delete();
-            cleared = true;
+            return true;
         }
-
+        return false;
     }
 
 
     public boolean isDead() {
         return dead;
     }
-
-    public void restart() {
-
-
+    public void restartLevel(){
         duck.delete();
         deleteCars(firstTrack);
         deleteCars(secondTrack);
@@ -205,8 +179,9 @@ public class Level2 extends LevelStructure {
         levelObjective.delete();
 
         dead=false;
-
     }
+
+
 
     public void deleteCars(Obstacles[]track){
         for (int i = 0; i < track.length; i++) {
@@ -216,6 +191,36 @@ public class Level2 extends LevelStructure {
         }
 
     }
+
+    public void createLevel(){
+        duck.delete();
+        levelObjective.delete();
+        duck = new Duck();
+        levelObjective = new Rectangle(600, 10, 30, 30);
+
+
+
+        duck.setColor(Color.BLUE);
+        duck.fill();
+
+        levelObjective.setColor(Color.ORANGE);
+        levelObjective.fill();
+
+
+        createCars(firstTrack, 15, 145, 400);
+        createBuses(secondTrack, 15, 250, 350);
+        createCars(thirdTrack, -15, 150, 250);
+        createCars(fourthTrack, 15, 145, 150);
+        createCars(fifthTrack, -12, 115, 100);
+
+        Rectangle borderLeft = new Rectangle(10, 10, 90, height);
+        Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
+        borderRight.setColor(Color.BLUE);
+        borderLeft.setColor(Color.BLUE);
+        borderLeft.fill();
+        borderRight.fill();
+    }
+
 
 
 }

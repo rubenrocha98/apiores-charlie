@@ -104,8 +104,8 @@ public class KeyListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()){
             case KeyboardEvent.KEY_R:
-                if(Main.level.isDead()){
-                    Main.level.restart();
+                if(Main.level.getLifes()==0){
+                    Main.level.r;
                 }
         }
 

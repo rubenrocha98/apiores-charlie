@@ -1,20 +1,12 @@
 package org.academiadecodigo.apiores.test.Levels;
 
-import org.academiadecodigo.apiores.test.Obstacles.Cars;
 import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
-import org.academiadecodigo.apiores.test.Obstacles.Robots;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public abstract class LevelStructure {
 
 
-     private final int PADDING = 10;
-     private  int cellSize= 20;
-     private int  maxCols = 50;
-     private  int maxRows = 25;
-     private final  int width = cellSize * maxCols + PADDING;
-     private final  int height = cellSize * maxRows + PADDING;
-     private Rectangle duck;
+     static int lives = 3;
 
 
      private boolean dead = false;
@@ -34,17 +26,29 @@ public abstract class LevelStructure {
 
      public  abstract Rectangle getDuck();
 
-     public abstract void createObstacles(Obstacles[], int speed, int atX, int atY);
+     public abstract void createObstacles(Obstacles[]track, int speed, int atX, int atY);
 
      public abstract void checkDead(Obstacles obstacles);
 
-     public abstract void checkCleared();
+     public abstract boolean checkCleared();
 
      public abstract boolean isDead();
 
-     public abstract void restart();
+
 
      public abstract void deleteCars(Obstacles[]track);
+
+     public abstract void restartLevel();
+
+     public abstract void createLevel();
+
+     public void lifeLoss(){
+          lives--;
+     }
+
+     public static int getLives(){
+          return lives;
+     }
 
 
 

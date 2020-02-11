@@ -1,41 +1,38 @@
 package org.academiadecodigo.apiores.test.Obstacles;
 
-import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class Cars extends Obstacles {
+public class Bus implements Obstacles {
 
-    private int height= 25;
-    private int width= 40;
+
+    private int height = 25;
+    private int width = 80;
     private Rectangle obstacle;
     private int speed;
-    private int atX;
-    private int atY;
 
 
 
-    public Cars(int atX, int atY, int speed){
-        obstacle = new Rectangle(atX-width, atY,width,height);
+    public Bus(int atX, int atY, int speed) {
+        obstacle = new Rectangle(atX - width, atY, width, height);
         this.speed = speed;
-        this.atX = atX;
-        this.atY = atY;
+
         obstacle.fill();
     }
 
-    public void moveObstacle(){
+    public void moveObstacle() {
 
-        obstacle.translate(-speed,0);
+        obstacle.translate(-speed, 0);
 
 
-        if(obstacle.getX() < 10){
+        if (obstacle.getX() < 10) {
             //rectangle.delete();
             //rectangle = new Rectangle(1000-width,250,width,height);
             //rectangle.fill();
 
-            obstacle.translate(900,0);
+            obstacle.translate(900, 0);
         }
-        if(obstacle.getX() > 920){
-            obstacle.translate(-900,0);
+        if (obstacle.getX() > 920) {
+            obstacle.translate(-900, 0);
         }
 
 
@@ -54,4 +51,7 @@ public class Cars extends Obstacles {
         return height;
     }
 
+
 }
+
+

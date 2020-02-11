@@ -1,6 +1,6 @@
 package org.academiadecodigo.apiores.test.Obstacles;
 
-public class Robots {
+public class Robot {
 
 
 

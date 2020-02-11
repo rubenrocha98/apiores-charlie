@@ -1,6 +1,6 @@
 package org.academiadecodigo.apiores.test;
 import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.Cars;
+import org.academiadecodigo.apiores.test.Obstacles.Car;
 import org.academiadecodigo.simplegraphics.graphics.*;
 
 
@@ -13,10 +13,10 @@ public class Test {
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
     private Rectangle duck;
-    private Cars[] firstTrack = new Cars[5];
-    private Cars[] secondTrack = new Cars[3];
-    private Cars[] thirdTrack = new Cars[5];
-    private Cars[] fourthTrack = new Cars[4];
+    private Car[] firstTrack = new Car[5];
+    private Car[] secondTrack = new Car[3];
+    private Car[] thirdTrack = new Car[5];
+    private Car[] fourthTrack = new Car[4];
 
     private boolean dead = false;
 
@@ -78,22 +78,22 @@ public class Test {
 
                 checkCleared();
 
-                for (Cars obstacle : firstTrack) {
+                for (Car obstacle : firstTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (Cars obstacle : secondTrack) {
+                for (Car obstacle : secondTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
 
                 }
-                for (Cars obstacle : thirdTrack) {
+                for (Car obstacle : thirdTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
 
-                for (Cars obstacle : fourthTrack) {
+                for (Car obstacle : fourthTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
@@ -129,24 +129,24 @@ public class Test {
 
 
 
-    public void createObstacles(Cars[]track, int speed, int atX, int atY){
+    public void createObstacles(Car[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Cars((i+1)*atX, atY,speed);
+            track[i] = new Car((i+1)*atX, atY,speed);
 
         }
 
     }
 
 
-    public void checkDead(Cars cars){
+    public void checkDead(Car car){
 
 
             for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
                 for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
 
-                    if(cars.getObstacle().getX() < j &&  cars.getObstacle().getX()+ cars.getWidth() > j &&
-                        cars.getObstacle().getY() < k && cars.getObstacle().getY()+ cars.getHeight() >k){
+                    if(car.getObstacle().getX() < j &&  car.getObstacle().getX()+ car.getWidth() > j &&
+                        car.getObstacle().getY() < k && car.getObstacle().getY()+ car.getHeight() >k){
                         dead = true;
                     }
                 }
@@ -181,7 +181,7 @@ public class Test {
 
     }
 
-    public void deleteCars(Cars[]track){
+    public void deleteCars(Car[]track){
         for (int i = 0; i < track.length; i++) {
 
             track[i].getObstacle().delete();
