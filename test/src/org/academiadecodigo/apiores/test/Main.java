@@ -1,13 +1,29 @@
 package org.academiadecodigo.apiores.test;
 
+import org.academiadecodigo.apiores.test.Levels.*;
+import org.academiadecodigo.apiores.test.Levels.LevelStructure;
+
 public class Main {
 
-    public static Test level;
+    private static int curentLevelIndex =0;
+    private static LevelStructure[] levels={new Level1(),new Level2() };
     public static void main(String[] args) throws InterruptedException{
 
-        level = new Test();
+        while(true){
 
-        level.start();
+            levels[curentLevelIndex].start();
+            curentLevelIndex++;
+            levels[curentLevelIndex].start();
+            curentLevelIndex = 0;
+
+        }
+
 
     }
+
+    public static LevelStructure getCurrentLevel(){
+        return levels[curentLevelIndex];
+    }
+
+
 }
