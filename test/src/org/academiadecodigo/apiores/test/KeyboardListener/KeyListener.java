@@ -1,6 +1,8 @@
-package org.academiadecodigo.apiores.test;
+package org.academiadecodigo.apiores.test.KeyboardListener;
 
 
+import org.academiadecodigo.apiores.test.Levels.LevelStructure;
+import org.academiadecodigo.apiores.test.Main;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -11,6 +13,9 @@ public class KeyListener implements KeyboardHandler {
 
     private Movable movable;
     private int speed;
+    private boolean stepIsEven;
+
+
 
     public KeyListener(Movable movable,int speed){
 
@@ -57,7 +62,7 @@ public class KeyListener implements KeyboardHandler {
 
 
 
-        if(Main.level.isDead()){
+        if(Main.getCurrentLevel().isDead()){
             return;
         }
         switch (keyboardEvent.getKey()) {
@@ -65,32 +70,58 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_UP:
 
-                if(Main.level.getDuck().getY()-speed <10 ){
+                if(Main.getCurrentLevel().getDuck().getY()-speed <10 ){
                     return;
                 }
                 movable.translate(0, -speed);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.getCurrentLevel().getDuck().load("Duck1.png");
+                } else{
+                    Main.getCurrentLevel().getDuck().load("Duck3.png");
+                }
+
+
                 break;
 
             case KeyboardEvent.KEY_DOWN:
 
-                if(Main.level.getDuck().getY()+speed > Main.level.getHeight()- Main.level.getDuck().getHeight()+10){
+                if(Main.getCurrentLevel().getDuck().getY()+speed > Main.getCurrentLevel().getHeight()- Main.getCurrentLevel().getDuck().getHeight()+10){
                     return;
                 }
                 movable.translate(0, speed);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.getCurrentLevel().getDuck().load("Duck10.png");
+                } else{
+                    Main.getCurrentLevel().getDuck().load("Duck12.png");
+                }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Main.level.getDuck().getX()+speed > Main.level.getWidth()-Main.level.getDuck().getWidth()-80){
+                if(Main.getCurrentLevel().getDuck().getX()+speed > Main.getCurrentLevel().getWidth()-Main.getCurrentLevel().getDuck().getWidth()-80){
                     return;
                 }
                 movable.translate(speed, 0);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.getCurrentLevel().getDuck().load("Duck4.png");
+                } else{
+                    Main.getCurrentLevel().getDuck().load("Duck6.png");
+                }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
-                if(Main.level.getDuck().getX()-speed< 100){
+                if(Main.getCurrentLevel().getDuck().getX()-speed< 100){
                     return;
+                }
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.getCurrentLevel().getDuck().load("Duck7.png");
+                } else{
+                    Main.getCurrentLevel().getDuck().load("Duck9.png");
                 }
                 movable.translate(-speed, 0);
                 break;
@@ -103,8 +134,8 @@ public class KeyListener implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()){
             case KeyboardEvent.KEY_R:
-                if(Main.level.isDead()){
-                    Main.level.restart();
+                if(LevelStructure.getLives()==0){
+                    Main.getCurrentLevel().restart();
                 }
         }
 

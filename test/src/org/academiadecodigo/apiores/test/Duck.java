@@ -1,12 +1,18 @@
 package org.academiadecodigo.apiores.test;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Duck extends Rectangle{
+public class Duck extends Picture {
 
-    public Duck(){
-        super(480, 450, 30, 30);  // NÃO MEXER NO TAMANHO DO PATO
+
+
+
+
+
+   public Duck(){
+
+            super(480, 450, "Duck1.png");  // NÃO MEXER NO TAMANHO DO PATO
+
     }
-
 
 }
