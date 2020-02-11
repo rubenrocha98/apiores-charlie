@@ -11,6 +11,9 @@ public class KeyListener implements KeyboardHandler {
 
     private Movable movable;
     private int speed;
+    private boolean stepIsEven;
+
+
 
     public KeyListener(Movable movable,int speed){
 
@@ -69,6 +72,14 @@ public class KeyListener implements KeyboardHandler {
                     return;
                 }
                 movable.translate(0, -speed);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.level.getDuck().load("Duck1.png");
+                } else{
+                    Main.level.getDuck().load("Duck3.png");
+                }
+
+
                 break;
 
             case KeyboardEvent.KEY_DOWN:
@@ -77,6 +88,12 @@ public class KeyListener implements KeyboardHandler {
                     return;
                 }
                 movable.translate(0, speed);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.level.getDuck().load("Duck10.png");
+                } else{
+                    Main.level.getDuck().load("Duck12.png");
+                }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
@@ -85,12 +102,24 @@ public class KeyListener implements KeyboardHandler {
                     return;
                 }
                 movable.translate(speed, 0);
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.level.getDuck().load("Duck4.png");
+                } else{
+                    Main.level.getDuck().load("Duck6.png");
+                }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
                 if(Main.level.getDuck().getX()-speed< 100){
                     return;
+                }
+                stepIsEven ^= true;
+                if (stepIsEven) {
+                    Main.level.getDuck().load("Duck7.png");
+                } else{
+                    Main.level.getDuck().load("Duck9.png");
                 }
                 movable.translate(-speed, 0);
                 break;

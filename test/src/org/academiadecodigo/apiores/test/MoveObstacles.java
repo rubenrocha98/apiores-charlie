@@ -1,12 +1,13 @@
 package org.academiadecodigo.apiores.test;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class MoveObstacles {
 
     private int height= 25;
     private int width= 40;
-    private Rectangle obstacle;
+    private Picture obstacle;
     private int speed;
     private int atX;
     private int atY;
@@ -14,11 +15,14 @@ public class MoveObstacles {
 
 
     public MoveObstacles(int atX, int atY, int speed){
-        obstacle = new Rectangle(atX-width, atY,width,height);
+        obstacle = new Picture(atX-width, atY, "Car1_Resized.png");
         this.speed = speed;
         this.atX = atX;
         this.atY = atY;
-        obstacle.fill();
+        obstacle.draw();
+
+
+
     }
 
     public void moveCarLeft(){
@@ -40,7 +44,7 @@ public class MoveObstacles {
 
     }
 
-    public Rectangle getObstacle() {
+    public Picture getObstacle() {
         return obstacle;
     }
 

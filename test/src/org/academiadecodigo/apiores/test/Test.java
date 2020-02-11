@@ -1,6 +1,7 @@
 package org.academiadecodigo.apiores.test;
 import org.academiadecodigo.simplegraphics.graphics.*;
-
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 public class Test {
@@ -10,11 +11,12 @@ public class Test {
     private  int maxRows = 25;
     private final  int width = cellSize * maxCols + PADDING;
     private final  int height = cellSize * maxRows + PADDING;
-    private Rectangle duck;
+    private Duck duck;
     private MoveObstacles[] firstTrack = new MoveObstacles[5];
     private MoveObstacles[] secondTrack = new MoveObstacles[3];
     private MoveObstacles[] thirdTrack = new MoveObstacles[5];
     private MoveObstacles[] fourthTrack = new MoveObstacles[4];
+    public static int keyPressed;
 
     private boolean dead = false;
 
@@ -23,19 +25,19 @@ public class Test {
     private boolean cleared = false;
     private Rectangle levelObjective;
 
-
-
     public Test() {
 
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
         canvas.show(rec);
+        Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
+        textureDesert.draw();
         duck = new Duck();
+
 
         // when rectangle and levelObjective share the same position the level clears
 
-        levelObjective = new Rectangle(600, 10, 30, 30);
-
+        levelObjective = new Rectangle(10, 10, width, 30);
     }
 
     public void start() throws InterruptedException {
@@ -48,14 +50,15 @@ public class Test {
 
             duck.delete();
             levelObjective.delete();
+
             duck = new Duck();
-            levelObjective = new Rectangle(600, 10, 30, 30);
+
+
+
+            levelObjective = new Rectangle(10, 10, width, 30);
 
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
-
-
-            duck.setColor(Color.BLUE);
-            duck.fill();
+            duck.draw();
 
             levelObjective.setColor(Color.ORANGE);
             levelObjective.fill();
@@ -72,6 +75,7 @@ public class Test {
             borderLeft.setColor(Color.BLUE);
             borderLeft.fill();
             borderRight.fill();
+
             while (!dead && !cleared) {
 
                 checkCleared();
@@ -96,13 +100,9 @@ public class Test {
                     checkDead(obstacle);
                 }
                 Thread.sleep(75);
-
-
             }
 
-            if(dead){
-            duck.setColor(Color.RED);
-            }
+
 
             while (dead) {
 
@@ -121,7 +121,7 @@ public class Test {
         return height;
     }
 
-    public  Rectangle getDuck(){
+    public  Duck getDuck(){
         return duck;
     }
 
