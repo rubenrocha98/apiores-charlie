@@ -11,22 +11,20 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
 
-        levels[2].start();
 
 
 
-/*
 
         while(true){
 
             levels[curentLevelIndex].start();
             curentLevelIndex++;
             levels[curentLevelIndex].start();
-            curentLevelIndex = 0;
+            curentLevelIndex++;
+            levels[curentLevelIndex].start();
 
         }
 
-*/
 
     }
 
