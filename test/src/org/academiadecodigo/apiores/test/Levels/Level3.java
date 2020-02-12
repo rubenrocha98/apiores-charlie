@@ -12,7 +12,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class FinalLevel extends LevelStructure{
+public class Level3 extends LevelStructure{
 
     private final int PADDING = 10;
     private final  int width =  1000 + PADDING;
@@ -34,7 +34,7 @@ public class FinalLevel extends LevelStructure{
     private Picture grave;
 
 
-    public FinalLevel() {
+    public Level3() {
 
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width , height);
@@ -51,9 +51,9 @@ public class FinalLevel extends LevelStructure{
 
     public void start() throws InterruptedException {
 
-        while(true) {
+        while (true) {
 
-            if(cleared){
+            if (cleared) {
                 break;
             }
             createLevel();
@@ -61,7 +61,7 @@ public class FinalLevel extends LevelStructure{
             while (!dead) {
 
 
-                if(checkCleared()){
+                if (checkCleared()) {
                     Thread.sleep(1500);
                     deleteLevel();
                     return;
@@ -97,7 +97,7 @@ public class FinalLevel extends LevelStructure{
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
-                for (Obstacles obstacle : eightTrack){
+                for (Obstacles obstacle : eightTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
@@ -108,22 +108,22 @@ public class FinalLevel extends LevelStructure{
             }
 
 
-            if(dead){
-                grave = new Picture(duck.getX()-6,duck.getY()-5,"grave_resized.png");
+            if (dead) {
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
                 grave.delete();
-                if(lives !=0){
+                if (lives != 0) {
                     continue;
                 }
             }
-            while(lives ==0){
+            while (lives == 0) {
                 grave.draw();
 
                 gameOverLet.draw();
-                gameOver=true;
+                gameOver = true;
             }
             gameOverLet.delete();
             grave.delete();
@@ -132,8 +132,8 @@ public class FinalLevel extends LevelStructure{
 
         }
 
-        }
     }
+
     public  int getWidth(){
         return width;
 
