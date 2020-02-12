@@ -22,6 +22,8 @@ public class Level2 extends LevelStructure {
     private boolean dead = false;
     private boolean cleared = false;
     private Rectangle levelObjective;
+    private Picture gameOverLet;
+    private Picture grave;
 
 
 
@@ -33,6 +35,7 @@ public class Level2 extends LevelStructure {
         Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
         textureDesert.draw();
         duck = new Duck();
+        gameOverLet = new Picture(425,197,"gameover1.png");
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -88,14 +91,25 @@ public class Level2 extends LevelStructure {
 
 
             if(dead){
+                grave = new Picture(duck.getX()-6,duck.getY()-5,"grave_resized.png");
+                grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
+                grave.delete();
+                if(lives !=0){
+                    continue;
+                }
             }
             while(lives ==0){
-                System.out.println();
-            }
+                grave.draw();
 
+                gameOverLet.draw();
+            }
+            gameOverLet.delete();
+            grave.delete();
+
+        return;
 
         }
     }

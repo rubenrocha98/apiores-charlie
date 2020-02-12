@@ -10,11 +10,15 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
 
         while(true){
+            curentLevelIndex = 0;
+            levels[curentLevelIndex].start();
+            if(LevelStructure.isGameOver()){
+                continue;
+            }
+            curentLevelIndex++;
 
             levels[curentLevelIndex].start();
-            curentLevelIndex++;
-            levels[curentLevelIndex].start();
-            curentLevelIndex = 0;
+
 
         }
 

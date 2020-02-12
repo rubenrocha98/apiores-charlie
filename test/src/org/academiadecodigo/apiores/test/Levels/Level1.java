@@ -19,6 +19,8 @@ public class Level1 extends LevelStructure {
     private Obstacles[] secondTrack = new Car[3];
     private Obstacles[] thirdTrack = new Car[5];
     private Obstacles[] fourthTrack = new Car[4];
+    private Picture grave;
+    private Picture gameOverLet;
 
     private LevelStructure level2;
 
@@ -35,9 +37,12 @@ public class Level1 extends LevelStructure {
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width, height);
         canvas.show(rec);
-        Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
+        Picture textureDesert = new Picture(105, 10, "Texture_Desert.png");
+        textureDesert.grow(10,0);
         textureDesert.draw();
         duck = new Duck();
+        gameOverLet = new Picture(425,197,"gameover1.png");
+
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -46,7 +51,7 @@ public class Level1 extends LevelStructure {
     }
 
     public void start() throws InterruptedException {
-
+        gameOver=false;
         while (true) {
             if (checkCleared()) {
                 break;
@@ -88,15 +93,28 @@ public class Level1 extends LevelStructure {
 
 
             if (dead) {
+                grave = new Picture(duck.getX()-6,duck.getY()-5,"grave_resized.png");
+                grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
+                grave.delete();
+                if(lives!=0){
+                    continue;
+                }
+
             }
             while(lives == 0) {
-                System.out.println();
+                grave.draw();
+
+                gameOverLet.draw();
+                gameOver=true;
+
             }
+            gameOverLet.delete();
+            grave.delete();
 
-
+            return;
         }
     }
 
@@ -167,7 +185,7 @@ public class Level1 extends LevelStructure {
         deleteCars(secondTrack);
         deleteCars(thirdTrack);
         deleteCars(fourthTrack);
-        levelObjective.delete();
+
 
         dead = false;
 
@@ -180,7 +198,6 @@ public class Level1 extends LevelStructure {
         deleteCars(secondTrack);
         deleteCars(thirdTrack);
         deleteCars(fourthTrack);
-        levelObjective.delete();
     }
 
     public void deleteCars(Obstacles[] track) {
@@ -194,12 +211,12 @@ public class Level1 extends LevelStructure {
 
     public void createLevel() {
         duck.delete();
-        levelObjective.delete();
+
         duck = new Duck();
 
         levelObjective = new Rectangle(10, 10, width, 30);
         levelObjective.setColor(Color.ORANGE);
-        levelObjective.fill();
+
 
         duck.draw();
 
