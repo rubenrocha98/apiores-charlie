@@ -8,6 +8,7 @@ public abstract class LevelStructure {
 
 
      static int lives = 3;
+     static boolean gameOver=false;
 
 
      private boolean dead = false;
@@ -47,15 +48,18 @@ public abstract class LevelStructure {
 
      public abstract void deleteLevel();
 
-     public void lifeLoss(){
-          lives--;
-     }
 
      public static int getLives(){
           return lives;
      }
 
+     public static boolean isGameOver(){
+          return gameOver;
+     }
 
+     public static void restartGame(){
+          gameOver = false;
+     }
 
 
 

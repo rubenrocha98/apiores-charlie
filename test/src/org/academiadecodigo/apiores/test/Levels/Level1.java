@@ -9,16 +9,15 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Level1 extends LevelStructure {
 
     private final int PADDING = 10;
-    private int cellSize = 20;
-    private int maxCols = 50;
-    private int maxRows = 25;
-    private final int width = cellSize * maxCols + PADDING;
-    private final int height = cellSize * maxRows + PADDING;
+    private final int width =  1000+ PADDING;
+    private final int height = 500+ PADDING;
     private Picture duck;
     private Obstacles[] firstTrack = new Car[5];
     private Obstacles[] secondTrack = new Car[3];
     private Obstacles[] thirdTrack = new Car[5];
     private Obstacles[] fourthTrack = new Car[4];
+    private Picture grave;
+    private Picture gameOverLet;
 
     private LevelStructure level2;
 
@@ -28,16 +27,19 @@ public class Level1 extends LevelStructure {
 
     private boolean cleared = false;
     private Rectangle levelObjective;
-
+    Picture hp = new Picture(110,490, "fullhp.png");
 
     public Level1() {
 
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, width, height);
         canvas.show(rec);
-        Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
+        Picture textureDesert = new Picture(105, 10, "Texture_Desert.png");
+        textureDesert.grow(10,0);
         textureDesert.draw();
         duck = new Duck();
+        gameOverLet = new Picture(375,185,"gameover1.png");
+
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -46,13 +48,16 @@ public class Level1 extends LevelStructure {
     }
 
     public void start() throws InterruptedException {
-
+        gameOver=false;
+        Picture hp = new Picture(110,490, "fullhp.png");
         while (true) {
             if (checkCleared()) {
                 break;
             }
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+
+            hp.draw();
             while (!dead) {
 
 
@@ -88,15 +93,41 @@ public class Level1 extends LevelStructure {
 
 
             if (dead) {
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
+                grave.delete();
+                hp.delete();
+                if(lives==2){
+                    hp = new Picture(110,490, "2hpleft.png");
+                }
+                if(lives==1){
+                    hp = new Picture(110,490, "1hpleft.png");
+                }
+                if(lives==0){
+                    hp = new Picture(110, 490,"nohpleft.png");
+                }
+                if (lives != 0) {
+                    continue;
+                }
             }
+            hp.delete();
+
+            hp.draw();
             while(lives == 0) {
-                System.out.println();
+                grave.draw();
+
+                gameOverLet.draw();
+                gameOver=true;
+
             }
+            hp.delete();
+            gameOverLet.delete();
+            grave.delete();
 
-
+            return;
         }
     }
 
@@ -167,7 +198,7 @@ public class Level1 extends LevelStructure {
         deleteObstacles(secondTrack);
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
-        levelObjective.delete();
+
 
         dead = false;
 
@@ -180,7 +211,6 @@ public class Level1 extends LevelStructure {
         deleteObstacles(secondTrack);
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
-        levelObjective.delete();
     }
 
     public void deleteObstacles(Obstacles[] track) {
@@ -194,13 +224,8 @@ public class Level1 extends LevelStructure {
 
     public void createLevel() {
         duck.delete();
-        levelObjective.delete();
         duck = new Duck();
-
         levelObjective = new Rectangle(10, 10, width, 30);
-        levelObjective.setColor(Color.ORANGE);
-        levelObjective.fill();
-
         duck.draw();
 
 
@@ -217,6 +242,13 @@ public class Level1 extends LevelStructure {
         borderRight.fill();
 
     }
+
+    public void changeLives(){
+        if(lives==0){
+
+        }
+    }
+
 
 
 }

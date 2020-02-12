@@ -3,32 +3,27 @@ package org.academiadecodigo.apiores.test.Levels;
 import org.academiadecodigo.apiores.test.Duck;
 import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
 import org.academiadecodigo.apiores.test.Obstacles.*;
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Shape;
+import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level3 extends LevelStructure {
 
     private final int PADDING = 10;
-    private final  int width =  1000 + PADDING;
-    private final  int height =  500 + PADDING;
+    private final  int width =  1000+ PADDING;
+    private final  int height =  500+ PADDING;
     private Picture duck;
-    private Obstacles[] firstTrack = new RobotDuck[5];
-
-
-    /*
-    private Obstacles[] secondTrack = new RobotDuck[3];
-    private Obstacles[] thirdTrack = new RobotDuck[5];
-    private Obstacles[] fourthTrack = new RobotDuck[4];
-    private Obstacles[] fifthTrack = new RobotDuck[4];
-
-    */
+    private Obstacles[] firstTrack = new Car[5];
+    private Obstacles[] secondTrack = new Bus[3];
+    private Obstacles[] thirdTrack = new Car[5];
+    private Obstacles[] fourthTrack = new Car[4];
+    private Obstacles[] fifthTrack = new Car[4];
 
     private boolean dead = false;
     private boolean cleared = false;
     private Rectangle levelObjective;
+    private Picture gameOverLet;
+    private Picture grave;
+    Picture hp = new Picture(110,490, "fullhp.png");
 
 
 
@@ -40,6 +35,7 @@ public class Level3 extends LevelStructure {
         Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
         textureDesert.draw();
         duck = new Duck();
+        gameOverLet = new Picture(425,197,"gameover1.png");
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -56,6 +52,7 @@ public class Level3 extends LevelStructure {
             }
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+            //hp.draw();
             while (!dead) {
 
 
@@ -67,8 +64,6 @@ public class Level3 extends LevelStructure {
                 for (Obstacles obstacle : firstTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
-
-                    /*
 
                 }
                 for (Obstacles obstacle : secondTrack) {
@@ -90,23 +85,48 @@ public class Level3 extends LevelStructure {
                     checkDead(obstacle);
                 }
 
-                */
-
                 Thread.sleep(75);
 
 
             }
 
 
-            if(dead){
+            if (dead) {
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
+                grave.delete();
+                hp.delete();
+                if(lives==2){
+                    hp = new Picture(110,490, "2hpleft.png");
+                }
+                if(lives==1){
+                    hp = new Picture(110,490, "1hpleft.png");
+                }
+                if(lives==0){
+                    hp = new Picture(110, 490,"nohpleft.png");
+                }
+                if (lives != 0) {
+                    continue;
+                }
             }
-            while(lives ==0){
-                System.out.println();
-            }
+            hp.delete();
 
+            hp.draw();
+            while(lives == 0) {
+                grave.draw();
+
+                gameOverLet.draw();
+                gameOver=true;
+
+            }
+            hp.delete();
+            gameOverLet.delete();
+            grave.delete();
+
+            return;
 
         }
     }
@@ -146,24 +166,10 @@ public class Level3 extends LevelStructure {
         }
     }
 
-    public void createRobots(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
+    public void createRobots(Robot[]track, int speed, int atX, int atY){
 
-            track[i] = new Robot((i + 1) * atX, atY, speed) {
-            };
-
-        }
+        System.out.println();
     }
-
-    public void createRobotDucks(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
-
-            track[i] = new Robot((i + 1) * atX, atY, speed) {
-            };
-
-        }
-    }
-
 
 
     public void checkDead(Obstacles obstacle){
@@ -200,14 +206,10 @@ public class Level3 extends LevelStructure {
     public void restartLevel(){
         duck.delete();
         deleteObstacles(firstTrack);
-
-        /*
         deleteObstacles(secondTrack);
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
-        */
-        levelObjective.delete();
         dead=false;
     }
     public void restart(){
@@ -219,14 +221,11 @@ public class Level3 extends LevelStructure {
     public void deleteLevel() {
         duck.delete();
         deleteObstacles(firstTrack);
-        /*
         deleteObstacles(secondTrack);
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
 
-        */
-        levelObjective.delete();
     }
 
     public void deleteObstacles(Obstacles[]track){
@@ -240,25 +239,16 @@ public class Level3 extends LevelStructure {
 
     public void createLevel(){
         duck.delete();
-        levelObjective.delete();
         duck = new Duck();
         levelObjective = new Rectangle(10, 10, width, 30);
-        levelObjective.setColor(Color.ORANGE);
-        levelObjective.fill();
         duck.draw();
 
 
-        createRobotDucks(firstTrack, 15, 145, 400);
-
-        /*
-        createRobotDucks(secondTrack, 15, 250, 350);
-        createRobotDucks(thirdTrack, -15, 150, 250);
-        createRobotDucks(fourthTrack, 15, 145, 150);
-        createRobotDucks(fifthTrack, -12, 115, 100);
-        */
-
-
-
+        createCars(firstTrack, 15, 145, 400);
+        createBuses(secondTrack, 15, 250, 350);
+        createCars(thirdTrack, -15, 150, 250);
+        createCars(fourthTrack, 15, 145, 150);
+        createCars(fifthTrack, -12, 115, 100);
 
         Rectangle borderLeft = new Rectangle(10, 10, 90, height);
         Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
@@ -268,5 +258,7 @@ public class Level3 extends LevelStructure {
         borderRight.fill();
 
     }
+
+
 
 }

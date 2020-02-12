@@ -14,7 +14,13 @@ public class Car implements Obstacles{
 
 
     public Car(int atX, int atY, int speed){
-        obstacle = new Picture(atX-width, atY, "Car1_Resized.png");
+        if(speed>0){
+            obstacle = new Picture(atX-width, atY, "Car2_Resized_Left.png");
+
+        }else {
+            obstacle = new Picture(atX-width,atY,"Car1_Resized.png");
+        }
+
         this.speed = speed;
         obstacle.draw();
 

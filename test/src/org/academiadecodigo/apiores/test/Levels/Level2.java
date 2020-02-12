@@ -10,8 +10,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Level2 extends LevelStructure {
 
     private final int PADDING = 10;
-    private final  int width =  1000 + PADDING;
-    private final  int height =  500 + PADDING;
+    private final  int width =  1000+ PADDING;
+    private final  int height =  500+ PADDING;
     private Picture duck;
     private Obstacles[] firstTrack = new Car[5];
     private Obstacles[] secondTrack = new Bus[3];
@@ -22,6 +22,9 @@ public class Level2 extends LevelStructure {
     private boolean dead = false;
     private boolean cleared = false;
     private Rectangle levelObjective;
+    private Picture gameOverLet;
+    private Picture grave;
+    Picture hp = new Picture(110,490, "fullhp.png");
 
 
 
@@ -33,6 +36,7 @@ public class Level2 extends LevelStructure {
         Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
         textureDesert.draw();
         duck = new Duck();
+        gameOverLet = new Picture(425,197,"gameover1.png");
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -49,6 +53,7 @@ public class Level2 extends LevelStructure {
             }
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+            //hp.draw();
             while (!dead) {
 
 
@@ -87,15 +92,42 @@ public class Level2 extends LevelStructure {
             }
 
 
-            if(dead){
+            if (dead) {
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
+                grave.delete();
+                hp.delete();
+                if(lives==2){
+                    hp = new Picture(110,490, "2hpleft.png");
+                }
+                if(lives==1){
+                    hp = new Picture(110,490, "1hpleft.png");
+                }
+                if(lives==0){
+                    hp = new Picture(110, 490,"nohpleft.png");
+                }
+                if (lives != 0) {
+                    continue;
+                }
             }
-            while(lives ==0){
-                System.out.println();
-            }
+            hp.delete();
 
+            hp.draw();
+            while(lives == 0) {
+                grave.draw();
+
+                gameOverLet.draw();
+                gameOver=true;
+
+            }
+            hp.delete();
+            gameOverLet.delete();
+            grave.delete();
+
+            return;
 
         }
     }
@@ -179,7 +211,6 @@ public class Level2 extends LevelStructure {
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
-        levelObjective.delete();
         dead=false;
     }
     public void restart(){
@@ -195,7 +226,7 @@ public class Level2 extends LevelStructure {
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
-        levelObjective.delete();
+
     }
 
     public void deleteObstacles(Obstacles[]track){
@@ -209,11 +240,8 @@ public class Level2 extends LevelStructure {
 
     public void createLevel(){
         duck.delete();
-        levelObjective.delete();
         duck = new Duck();
         levelObjective = new Rectangle(10, 10, width, 30);
-        levelObjective.setColor(Color.ORANGE);
-        levelObjective.fill();
         duck.draw();
 
 
@@ -222,6 +250,7 @@ public class Level2 extends LevelStructure {
         createCars(thirdTrack, -15, 150, 250);
         createCars(fourthTrack, 15, 145, 150);
         createCars(fifthTrack, -12, 115, 100);
+
         Rectangle borderLeft = new Rectangle(10, 10, 90, height);
         Rectangle borderRight = new Rectangle(width - 80, 10, 90, height);
         borderRight.setColor(Color.BLUE);
