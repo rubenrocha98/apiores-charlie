@@ -6,14 +6,16 @@ import org.academiadecodigo.apiores.test.Levels.LevelStructure;
 public class Main {
 
     private static int curentLevelIndex = 0;
-    private static LevelStructure[] levels = {new Level1(), new Level2(), new FinalLevel()};
+    private static LevelStructure[] levels = {new Level1(), new Level2(), new Level3(), new FinalLevel()};
 
     public static void main(String[] args) throws InterruptedException {
 
 
 
+        levels[2].start();
 
 
+/*
 
         while(true){
 
@@ -24,6 +26,8 @@ public class Main {
             levels[curentLevelIndex].start();
 
         }
+
+        */
 
 
     }
