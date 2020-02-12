@@ -24,15 +24,15 @@ public class RobotDuck implements Obstacles{
 
     public void moveObstacle(){
 
-        obstacle.translate(-speed,0);
+        obstacle.translate(0,-speed);
 
 
-        if(obstacle.getX() < 10){
+        if(obstacle.getY() < 10){
 
-            obstacle.translate(900,0);
+            obstacle.translate(0,400);
         }
-        if(obstacle.getX() > 920){
-            obstacle.translate(-900,0);
+        if(obstacle.getY() > 420){
+            obstacle.translate(0,-400);
         }
 
 
