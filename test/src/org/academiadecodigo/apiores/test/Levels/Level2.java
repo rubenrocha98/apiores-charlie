@@ -18,6 +18,7 @@ public class Level2 extends LevelStructure {
     private Obstacles[] thirdTrack = new Car[5];
     private Obstacles[] fourthTrack = new Car[4];
     private Obstacles[] fifthTrack = new Car[4];
+    private Obstacles[] sixthTrack = new Car[4];
 
     private boolean dead = false;
     private Rectangle levelObjective;
@@ -88,12 +89,15 @@ public class Level2 extends LevelStructure {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
-
-                for (Obstacles obstacle : fourthTrack) {
+                for (Obstacles obstacle: fourthTrack){
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
                 for (Obstacles obstacle : fifthTrack) {
+                    obstacle.moveObstacle();
+                    checkDead(obstacle);
+                }
+                for (Obstacles obstacle : sixthTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
@@ -224,6 +228,7 @@ public class Level2 extends LevelStructure {
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
+        deleteObstacles(sixthTrack);
         border.delete();
         dead=false;
     }
@@ -240,6 +245,7 @@ public class Level2 extends LevelStructure {
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
+        deleteObstacles(sixthTrack);
 
     }
 
@@ -259,11 +265,12 @@ public class Level2 extends LevelStructure {
         duck.draw();
 
 
-        createCars(firstTrack, 15, 145, 400);
-        createBuses(secondTrack, 15, 250, 350);
-        createCars(thirdTrack, -15, 150, 250);
-        createCars(fourthTrack, 15, 145, 150);
-        createCars(fifthTrack, -12, 115, 100);
+        createCars(firstTrack, 12, 145, 400);
+        createBuses(secondTrack, 17, 250, 350);
+        createCars(thirdTrack, -15, 150, 220);
+        createCars(fourthTrack,15,145,270);
+        createCars(fifthTrack, 14, 145, 150);
+        createCars(sixthTrack, -12, 115, 100);
         border.draw();
 
 

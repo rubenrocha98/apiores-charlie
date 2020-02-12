@@ -228,10 +228,10 @@ public class Level1 extends LevelStructure {
         duck.draw();
 
 
-        createObstacles(firstTrack, 20, 125, 140);
-        createObstacles(secondTrack, -20, 290, 330);
+        createObstacles(firstTrack, 16, 180, 140);
+        createObstacles(secondTrack, -18, 290, 330);
         createObstacles(thirdTrack, 12, 150, 390);
-        createObstacles(fourthTrack, -20, 245, 200);
+        createObstacles(fourthTrack, -17, 245, 200);
         border.draw();
     }
 
