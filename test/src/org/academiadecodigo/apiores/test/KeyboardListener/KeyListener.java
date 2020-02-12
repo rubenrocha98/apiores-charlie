@@ -2,7 +2,7 @@ package org.academiadecodigo.apiores.test.KeyboardListener;
 
 
 import org.academiadecodigo.apiores.test.Levels.LevelStructure;
-import org.academiadecodigo.apiores.test.Main;
+import org.academiadecodigo.apiores.test.Game;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -62,7 +62,7 @@ public class KeyListener implements KeyboardHandler {
 
 
 
-        if(Main.getCurrentLevel().isDead()){
+        if(Game.getCurrentLevel().isDead()){
             return;
         }
         switch (keyboardEvent.getKey()) {
@@ -70,15 +70,15 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_UP:
 
-                if(Main.getCurrentLevel().getDuck().getY()-speed <10 ){
+                if(Game.getCurrentLevel().getDuck().getY()-speed <10 ){
                     return;
                 }
                 movable.translate(0, -speed);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Main.getCurrentLevel().getDuck().load("Duck1.png");
+                    Game.getCurrentLevel().getDuck().load("Duck1.png");
                 } else{
-                    Main.getCurrentLevel().getDuck().load("Duck3.png");
+                    Game.getCurrentLevel().getDuck().load("Duck3.png");
                 }
 
 
@@ -86,44 +86,44 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_DOWN:
 
-                if(Main.getCurrentLevel().getDuck().getY()+speed+50 > Main.getCurrentLevel().getHEIGHT()-
-                        Main.getCurrentLevel().getDuck().getHeight()+10){
+                if(Game.getCurrentLevel().getDuck().getY()+speed+50 > Game.getCurrentLevel().getHEIGHT()-
+                        Game.getCurrentLevel().getDuck().getHeight()+10){
                     return;
                 }
                 movable.translate(0, speed);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Main.getCurrentLevel().getDuck().load("Duck10.png");
+                    Game.getCurrentLevel().getDuck().load("Duck10.png");
                 } else{
-                    Main.getCurrentLevel().getDuck().load("Duck12.png");
+                    Game.getCurrentLevel().getDuck().load("Duck12.png");
                 }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Main.getCurrentLevel().getDuck().getX()+speed>
-                        Main.getCurrentLevel().getWIDTH()-Main.getCurrentLevel().getDuck().getWidth()-80){
+                if(Game.getCurrentLevel().getDuck().getX()+speed>
+                        Game.getCurrentLevel().getWIDTH()- Game.getCurrentLevel().getDuck().getWidth()-80){
                     return;
                 }
                 movable.translate(speed, 0);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Main.getCurrentLevel().getDuck().load("Duck4.png");
+                    Game.getCurrentLevel().getDuck().load("Duck4.png");
                 } else{
-                    Main.getCurrentLevel().getDuck().load("Duck6.png");
+                    Game.getCurrentLevel().getDuck().load("Duck6.png");
                 }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
-                if(Main.getCurrentLevel().getDuck().getX()-speed< 100){
+                if(Game.getCurrentLevel().getDuck().getX()-speed< 100){
                     return;
                 }
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Main.getCurrentLevel().getDuck().load("Duck7.png");
+                    Game.getCurrentLevel().getDuck().load("Duck7.png");
                 } else{
-                    Main.getCurrentLevel().getDuck().load("Duck9.png");
+                    Game.getCurrentLevel().getDuck().load("Duck9.png");
                 }
                 movable.translate(-speed, 0);
                 break;
@@ -137,7 +137,7 @@ public class KeyListener implements KeyboardHandler {
         switch (keyboardEvent.getKey()){
             case KeyboardEvent.KEY_R:
                 if(LevelStructure.getLives()==0){
-                    Main.getCurrentLevel().restart();
+                    Game.getCurrentLevel().restart();
                 }
         }
 

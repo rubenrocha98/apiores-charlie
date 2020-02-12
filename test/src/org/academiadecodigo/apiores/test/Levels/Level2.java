@@ -21,12 +21,12 @@ public class Level2 extends LevelStructure {
     private Obstacles[] sixthTrack = new Car[4];
 
     private boolean dead = false;
-    private Rectangle levelObjective;
+    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110,490,"fullHp.png");
     Picture border = new Picture(10,10,"border.png");
-
+    Picture level2 = new Picture(850,483,"lvl2.png");
 
     public Level2() {
 
@@ -40,13 +40,13 @@ public class Level2 extends LevelStructure {
 
         // when rectangle and levelObjective share the same position the level clears
 
-        levelObjective = new Rectangle(600, 10, 30, 30);
 
     }
 
     public void start() throws InterruptedException {
         while(true) {
             border.delete();
+            level2.delete();
 
 
             hp.delete();
@@ -136,6 +136,7 @@ public class Level2 extends LevelStructure {
                 gameOverLet.draw();
                 gameOver=true;
                 border.draw();
+                level2.draw();
 
             }
 
@@ -143,6 +144,7 @@ public class Level2 extends LevelStructure {
             gameOverLet.delete();
             grave.delete();
             border.delete();
+            level2.delete();
 
             return;
 
@@ -230,6 +232,7 @@ public class Level2 extends LevelStructure {
         deleteObstacles(fifthTrack);
         deleteObstacles(sixthTrack);
         border.delete();
+        level2.delete();
         dead=false;
     }
     public void restart(){
@@ -272,6 +275,7 @@ public class Level2 extends LevelStructure {
         createCars(fifthTrack, 14, 145, 150);
         createCars(sixthTrack, -12, 115, 100);
         border.draw();
+        level2.draw();
 
 
     }

@@ -22,8 +22,9 @@ public class Level1 extends LevelStructure {
     Picture hp = new Picture(110,490, "fullhp.png");
 
     private boolean dead = false;
-    private Rectangle levelObjective;
+    private Rectangle levelObjective=new Rectangle(600, 10, 30, 30);
     Picture border = new Picture(10,10,"border.png");
+    Picture level = new Picture(850,483,"lvl1.png");
 
 
 
@@ -38,13 +39,13 @@ public class Level1 extends LevelStructure {
         textureDesert.draw();
         duck = new Duck();
         gameOverLet = new Picture(375,185,"gameover1.png");
-        levelObjective = new Rectangle(600, 10, 30, 30);
 
     }
 
     public void start() throws InterruptedException {
         gameOver=false;
         border.delete();
+        level.delete();
         hp.load("fullHp.png");
 
         while (true) {
@@ -117,9 +118,11 @@ public class Level1 extends LevelStructure {
                 gameOverLet.draw();
                 gameOver=true;
                 border.draw();
+                level.draw();
                 hp.load("fullHp.png");
             }
             border.delete();
+            level.delete();
             gameOverLet.delete();
             grave.delete();
             hp.delete();
@@ -196,6 +199,7 @@ public class Level1 extends LevelStructure {
         deleteObstacles(thirdTrack);
         deleteObstacles(fourthTrack);
         border.delete();
+        level.delete();
 
 
         dead = false;
@@ -228,18 +232,14 @@ public class Level1 extends LevelStructure {
         duck.draw();
 
 
-        createObstacles(firstTrack, 16, 180, 140);
+        createObstacles(firstTrack, 16, 160, 140);
         createObstacles(secondTrack, -18, 290, 330);
         createObstacles(thirdTrack, 12, 150, 390);
         createObstacles(fourthTrack, -17, 245, 200);
         border.draw();
+        level.draw();
     }
 
-    public void changeLives(){
-        if(lives==0){
-
-        }
-    }
 
 
 

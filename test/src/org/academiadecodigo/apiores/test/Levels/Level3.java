@@ -26,12 +26,12 @@ public class Level3 extends LevelStructure{
     private Obstacles[] seventhTrack = new Robot[7];
     private Obstacles[] eightTrack = new Robot[7];
     private boolean dead = false;
-    private Rectangle levelObjective;
+    private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     Picture hp = new Picture(110,490, "fullhp.png");
     Picture border = new Picture(10,10,"border.png");
-
+    Picture level3 = new Picture(850,483,"lvl3.png");
 
     public Level3() {
 
@@ -42,16 +42,13 @@ public class Level3 extends LevelStructure{
         textureDesert.draw();
         duck = new Duck();
         gameOverLet = new Picture(425,197,"gameover1.png");
-        // when rectangle and levelObjective share the same position the level clears
-
-        levelObjective = new Rectangle(600, 10, 30, 30);
-
     }
 
     public void start() throws InterruptedException {
 
         while (true) {
             border.delete();
+            level3.delete();
 
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
@@ -146,6 +143,7 @@ public class Level3 extends LevelStructure{
             while(lives == 0) {
                 grave.draw();
                 border.draw();
+                level3.draw();
                 gameOverLet.draw();
                 gameOver=true;
 
@@ -155,6 +153,7 @@ public class Level3 extends LevelStructure{
             gameOverLet.delete();
             grave.delete();
             border.delete();
+            level3.delete();
 
             return;
 
@@ -260,6 +259,7 @@ public class Level3 extends LevelStructure{
         deleteObstacles(seventhTrack);
         deleteObstacles(eightTrack);
         border.delete();
+        level3.delete();
 
         dead=false;
     }
@@ -306,6 +306,7 @@ public class Level3 extends LevelStructure{
         createRobot(eightTrack, 30, 100, 50);
 
         border.draw();
+        level3.draw();
 
     }
 
