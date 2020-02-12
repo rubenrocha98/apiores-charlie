@@ -73,6 +73,9 @@ public class Level3 extends LevelStructure{
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
+                    border.delete();
+                    level3.delete();
+
                     return;
                 }
                 for (Obstacles obstacle : firstTrack) {

@@ -63,6 +63,8 @@ public class Level1 extends LevelStructure {
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
+                    border.delete();
+                    level.delete();
                     return;
                 }
 

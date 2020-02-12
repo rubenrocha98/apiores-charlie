@@ -9,6 +9,7 @@ public class MainMenu {
     private final int WIDTH = 1000 + PADDING;
     private final int HEIGHT = 500 + PADDING;
     private static boolean inMenu;
+
     public MainMenu() {
 
         Canvas canvas = Canvas.getInstance();

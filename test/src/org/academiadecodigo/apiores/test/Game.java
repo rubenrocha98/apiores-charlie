@@ -7,7 +7,7 @@ import org.academiadecodigo.apiores.test.Levels.LevelStructure;
 public class Game {
 
     private static int curentLevelIndex =0;
-    private static LevelStructure[] levels={new Level1(),new Level3(),new Level3() };
+    private static LevelStructure[] levels={new Level1(),new Level2(),new Level3() };
     private MainMenu startMenu = new MainMenu();
 
     private boolean mainMenu=true;
@@ -33,6 +33,7 @@ public class Game {
             if(LevelStructure.isGameOver()){
                 continue;
             }
+
 
 
         }

@@ -7,7 +7,7 @@ public class Bus implements Obstacles {
 
 
     private int height = 25;
-    private int width = 80;
+    private int width = 40;
     private Picture obstacle;
     private int speed;
 
