@@ -22,9 +22,9 @@ public abstract class LevelStructure {
 
      public abstract void start() throws InterruptedException;
 
-     public  abstract int getWidth();
+     public  abstract int getWIDTH();
 
-     public  abstract int getHeight();
+     public  abstract int getHEIGHT();
 
      public  abstract Picture getDuck();
 

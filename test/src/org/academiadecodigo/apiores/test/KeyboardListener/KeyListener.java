@@ -86,7 +86,8 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_DOWN:
 
-                if(Main.getCurrentLevel().getDuck().getY()+speed > Main.getCurrentLevel().getHeight()- Main.getCurrentLevel().getDuck().getHeight()+10){
+                if(Main.getCurrentLevel().getDuck().getY()+speed+50 > Main.getCurrentLevel().getHEIGHT()-
+                        Main.getCurrentLevel().getDuck().getHeight()+10){
                     return;
                 }
                 movable.translate(0, speed);
@@ -100,7 +101,8 @@ public class KeyListener implements KeyboardHandler {
 
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Main.getCurrentLevel().getDuck().getX()+speed > Main.getCurrentLevel().getWidth()-Main.getCurrentLevel().getDuck().getWidth()-80){
+                if(Main.getCurrentLevel().getDuck().getX()+speed>
+                        Main.getCurrentLevel().getWIDTH()-Main.getCurrentLevel().getDuck().getWidth()-80){
                     return;
                 }
                 movable.translate(speed, 0);

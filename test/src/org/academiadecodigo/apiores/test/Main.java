@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
 
         while(true){
+            
             curentLevelIndex = 0;
             levels[curentLevelIndex].start();
             if(LevelStructure.isGameOver()){
