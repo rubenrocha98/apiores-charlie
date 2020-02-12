@@ -38,7 +38,7 @@ public abstract class LevelStructure {
 
 
 
-     public abstract void deleteCars(Obstacles[]track);
+     public abstract void deleteObstacles(Obstacles[]track);
 
      public abstract void restartLevel();
 

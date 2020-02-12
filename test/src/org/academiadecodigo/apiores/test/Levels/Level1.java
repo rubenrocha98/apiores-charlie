@@ -102,7 +102,6 @@ public class Level1 extends LevelStructure {
                 if(lives!=0){
                     continue;
                 }
-
             }
             while(lives == 0) {
                 grave.draw();
@@ -181,10 +180,10 @@ public class Level1 extends LevelStructure {
 
 
         duck.delete();
-        deleteCars(firstTrack);
-        deleteCars(secondTrack);
-        deleteCars(thirdTrack);
-        deleteCars(fourthTrack);
+        deleteObstacles(firstTrack);
+        deleteObstacles(secondTrack);
+        deleteObstacles(thirdTrack);
+        deleteObstacles(fourthTrack);
 
 
         dead = false;
@@ -194,13 +193,13 @@ public class Level1 extends LevelStructure {
 
     public void deleteLevel() {
         duck.delete();
-        deleteCars(firstTrack);
-        deleteCars(secondTrack);
-        deleteCars(thirdTrack);
-        deleteCars(fourthTrack);
+        deleteObstacles(firstTrack);
+        deleteObstacles(secondTrack);
+        deleteObstacles(thirdTrack);
+        deleteObstacles(fourthTrack);
     }
 
-    public void deleteCars(Obstacles[] track) {
+    public void deleteObstacles(Obstacles[] track) {
         for (int i = 0; i < track.length; i++) {
 
             track[i].getObstacle().delete();
@@ -211,13 +210,8 @@ public class Level1 extends LevelStructure {
 
     public void createLevel() {
         duck.delete();
-
         duck = new Duck();
-
         levelObjective = new Rectangle(10, 10, width, 30);
-        levelObjective.setColor(Color.ORANGE);
-
-
         duck.draw();
 
 

@@ -16,9 +16,12 @@ public class Main {
                 continue;
             }
             curentLevelIndex++;
-
             levels[curentLevelIndex].start();
-
+            if(LevelStructure.isGameOver()){
+                continue;
+            }
+            curentLevelIndex++;
+            levels[curentLevelIndex].start();
 
         }
 
