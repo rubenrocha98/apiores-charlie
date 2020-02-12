@@ -24,6 +24,7 @@ public class Level2 extends LevelStructure {
     private Rectangle levelObjective;
     private Picture gameOverLet;
     private Picture grave;
+    Picture hp = new Picture(110,490, "fullhp.png");
 
 
 
@@ -52,6 +53,7 @@ public class Level2 extends LevelStructure {
             }
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+            //hp.draw();
             while (!dead) {
 
 
@@ -90,27 +92,42 @@ public class Level2 extends LevelStructure {
             }
 
 
-            if(dead){
-                grave = new Picture(duck.getX()-6,duck.getY()-5,"grave_resized.png");
+            if (dead) {
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
                 grave.delete();
-                if(lives !=0){
+                hp.delete();
+                if(lives==2){
+                    hp = new Picture(110,490, "2hpleft.png");
+                }
+                if(lives==1){
+                    hp = new Picture(110,490, "1hpleft.png");
+                }
+                if(lives==0){
+                    hp = new Picture(110, 490,"nohpleft.png");
+                }
+                if (lives != 0) {
                     continue;
                 }
             }
-            while(lives ==0){
+            hp.delete();
+
+            hp.draw();
+            while(lives == 0) {
                 grave.draw();
 
                 gameOverLet.draw();
                 gameOver=true;
+
             }
+            hp.delete();
             gameOverLet.delete();
             grave.delete();
 
-        return;
+            return;
 
         }
     }

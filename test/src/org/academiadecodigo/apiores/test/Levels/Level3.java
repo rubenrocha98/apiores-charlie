@@ -32,7 +32,7 @@ public class Level3 extends LevelStructure{
     private Rectangle levelObjective;
     private Picture gameOverLet;
     private Picture grave;
-
+    Picture hp = new Picture(110,490, "fullhp.png");
 
     public Level3() {
 
@@ -50,14 +50,24 @@ public class Level3 extends LevelStructure{
     }
 
     public void start() throws InterruptedException {
-
+        if(lives==2){
+            hp = new Picture(110,490, "2hpleft.png");
+        }
+        if(lives==1){
+            hp = new Picture(110,490, "1hpleft.png");
+        }
+        if(lives==0){
+            hp = new Picture(110, 490,"nohpleft.png");
+        }
         while (true) {
-
+            hp.delete();
             if (cleared) {
                 break;
             }
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
+
+            hp.draw();
             while (!dead) {
 
 
@@ -115,21 +125,35 @@ public class Level3 extends LevelStructure{
                 Thread.sleep(1500);
                 restartLevel();
                 grave.delete();
+                hp.delete();
+                if(lives==2){
+                    hp = new Picture(110,490, "2hpleft.png");
+                }
+                if(lives==1){
+                    hp = new Picture(110,490, "1hpleft.png");
+                }
+                if(lives==0){
+                    hp = new Picture(110, 490,"nohpleft.png");
+                }
                 if (lives != 0) {
                     continue;
                 }
             }
-            while (lives == 0) {
+            hp.delete();
+
+
+            while(lives == 0) {
                 grave.draw();
 
                 gameOverLet.draw();
-                gameOver = true;
+                gameOver=true;
+
             }
+            hp.delete();
             gameOverLet.delete();
             grave.delete();
 
             return;
-
         }
 
     }
