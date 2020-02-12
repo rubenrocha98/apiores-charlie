@@ -11,7 +11,7 @@ public class Duck extends Picture {
 
    public Duck(){
 
-            super(480, 450, "Duck1.png");  // NÃO MEXER NO TAMANHO DO PATO
+            super(480, 440, "Duck1.png");  // NÃO MEXER NO TAMANHO DO PATO
 
     }
 
