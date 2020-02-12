@@ -38,7 +38,7 @@ public class Level3 extends LevelStructure{
         Canvas canvas = Canvas.getInstance();
         Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
         canvas.show(rec);
-        Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
+        Picture textureDesert = new Picture(105, 20, "Desert_Texture.png");
         textureDesert.draw();
         duck = new Duck();
         gameOverLet = new Picture(425,197,"gameover1.png");
