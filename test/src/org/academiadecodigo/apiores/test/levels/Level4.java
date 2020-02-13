@@ -1,8 +1,8 @@
 package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.duck.Duck;
+
+import org.academiadecodigo.apiores.test.duck.DuckSpaceShip;
 import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
-import org.academiadecodigo.apiores.test.levels.LevelStructure;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -33,7 +33,7 @@ public class Level4 extends LevelStructure{
 
     public Level4() {
 
-        duck = new Duck();
+        duck = new DuckSpaceShip();
         gameOverLet = new Picture(385, 130, "dead/gameOver.png");
 
     }
@@ -194,13 +194,6 @@ public class Level4 extends LevelStructure{
 
     }
 
-    public void createRobotDuck(Obstacles[] track, int speed, int atX, int atY) {
-        for (int i = 0; i < track.length; i++) {
-
-
-        }
-
-    }
 
 
     public void checkDead(Obstacles obstacle) {
@@ -279,7 +272,7 @@ public class Level4 extends LevelStructure{
 
     public void createLevel() {
         duck.delete();
-        duck = new Duck();
+        duck = new DuckSpaceShip();
         levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
