@@ -38,7 +38,7 @@ public class Level4 extends LevelStructure{
     }
 
     public void start() throws InterruptedException {
-        Picture nasaTexture = new Picture(95, 10, "backgrounds/Nasa_Texture.png");
+        Picture nasaTexture = new Picture(95, 10, "backgrounds/Space_Level.png");
         nasaTexture.draw();
         while (true) {
             border.delete();
