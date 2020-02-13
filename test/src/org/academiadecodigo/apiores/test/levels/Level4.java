@@ -2,7 +2,6 @@ package org.academiadecodigo.apiores.test.levels;
 
 import org.academiadecodigo.apiores.test.duck.Duck;
 import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
-import org.academiadecodigo.apiores.test.levels.LevelStructure;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -28,7 +27,7 @@ public class Level4 extends LevelStructure{
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110, 490, "hp/fullhp.png");
-    private Picture border = new Picture(10, 10, "backgrounds/border.png");
+    private Picture border = new Picture(10, 10, "backgrounds/space.jpg");
     private Picture level3 = new Picture(850, 483, "lvls/lvl3.png");
 
     public Level4() {
