@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private static int currentLevel =0;
-    private static LevelStructure[] levels={new Level4(),new Level2(),new Level3(),new Level4()};
+    private static LevelStructure[] levels={new Level1(),new Level2(),new Level3(),new Level4()};
 
     public void game() throws InterruptedException {
         MainMenu startMenu = new MainMenu();

@@ -17,17 +17,18 @@ public class Level4 extends LevelStructure{
     private Obstacles[] firstTrack = new Comet[7];
     private Obstacles[] secondTrack = new Comet[4];
     private Obstacles[] thirdTrack = new Comet[5];
-    private Obstacles[] fourthTrack = new Comet[4];
+    private Obstacles[] fourthTrack = new Comet[3];
     private Obstacles[] fifthTrack = new Comet[4];
     private Obstacles[] sixthTrack = new Comet[5];
     private Obstacles[] seventhTrack = new Comet[3];
-    private Obstacles[] eightTrack = new Comet[2];
+    private Obstacles[] eightTrack = new Comet[3];
     private boolean dead = false;
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110, 490, "hp/fullhp.png");
     private Picture border = new Picture(10, 10, "backgrounds/border.png");
     private Picture level4 = new Picture(850, 483, "lvls/lvl4.png");
+    ///  private Sound quack = new Sound("  resources/Quack Sound Effect  Gutlacky.wav");
 
     public Level4() {
 
@@ -106,6 +107,7 @@ public class Level4 extends LevelStructure{
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
+
 
                 Thread.sleep(75);
 
@@ -203,6 +205,7 @@ public class Level4 extends LevelStructure{
                 if (obstacle.getObstacle().getX() < j && obstacle.getObstacle().getX() + obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY() + obstacle.getHeight() > k) {
                     dead = true;
+                    ///quack.play(true);
                 }
             }
 
@@ -272,14 +275,14 @@ public class Level4 extends LevelStructure{
         duck.delete();
         duck = new DuckSpaceShip();
         duck.draw();
-        createComet(firstTrack, -8, 100, 403);
-        createComet(secondTrack, 10, 120, 353);
-        createComet(thirdTrack, -9, 100, 311);
-        createComet(fourthTrack, 15, 200, 253);
-        createComet(fifthTrack, -20, 100, 224);
-        createComet(sixthTrack, 20, 70, 174);
-        createComet(seventhTrack, -17, 70, 139);
-        createComet(eightTrack, 17, 100, 87);
+        createComet(firstTrack, -8, 100, 87);
+        createComet(secondTrack, 10, 120, 139);
+        createComet(thirdTrack, -9, 100, 174);
+        createComet(fourthTrack, 15, 200, 210);
+        createComet(fifthTrack, -20, 100, 300);
+        createComet(sixthTrack, 20, 70, 340);
+        createComet(seventhTrack, -17, 70, 360);
+        createComet(eightTrack, 30, 100, 40);
 
         border.draw();
         level4.draw();
