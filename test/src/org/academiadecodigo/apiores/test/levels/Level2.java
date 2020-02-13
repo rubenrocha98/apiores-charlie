@@ -2,7 +2,7 @@ package org.academiadecodigo.apiores.test.levels;
 
 
 import org.academiadecodigo.apiores.test.duck.Duck;
-import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.*;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -21,7 +21,6 @@ public class Level2 extends LevelStructure {
     private Obstacles[] sixthTrack = new Car[4];
 
     private boolean dead = false;
-    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110,490, "hp/fullhp.png");
@@ -66,10 +65,9 @@ public class Level2 extends LevelStructure {
             hp.delete();
             hp.draw();
             while (!dead) {
-                System.out.println(duck.getX()+" "+duck.getY());
-
 
                     if(checkCleared()){
+                        duck.delete();
                         Thread.sleep(1500);
                         deleteLevel();
                         hp.delete();
@@ -206,7 +204,7 @@ public class Level2 extends LevelStructure {
     public boolean checkCleared() {
 
 
-        if(duck.getY()==PADDING){
+        if(duck.getY()==40 && duck.getX()==540){
             return true;
         }
 
@@ -260,7 +258,6 @@ public class Level2 extends LevelStructure {
     public void createLevel(){
         duck.delete();
         duck = new Duck();
-        levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
 

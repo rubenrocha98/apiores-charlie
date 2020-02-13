@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.test.keyboardlistener;
+package org.academiadecodigo.apiores.test.keyboardlisteners;
 
 
 import org.academiadecodigo.apiores.test.levels.*;
@@ -69,10 +69,17 @@ public class KeyListener implements KeyboardHandler {
 
 
             case KeyboardEvent.KEY_UP:
-                if(Game.getCurrentLevel() instanceof Level2){
+                if(Game.getCurrentLevel() instanceof Level2) {
+                    if (Game.getCurrentLevel().getDuck().getY() - speed < 40) {
+                        return;
+                    }
 
-                }
-                if (Game.getCurrentLevel().getDuck().getY() - speed < 10) {
+                }else if(Game.getCurrentLevel() instanceof Level3){
+                    if(Game.getCurrentLevel().getDuck().getY()-speed<40){
+                        return;
+                    }
+
+                }else if (Game.getCurrentLevel().getDuck().getY() - speed < 10) {
                     return;
                 }
                 movable.translate(0, -speed);

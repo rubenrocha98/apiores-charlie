@@ -1,7 +1,7 @@
 package org.academiadecodigo.apiores.test.mainmenu;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.apiores.test.keyboardlistener.*;
+import org.academiadecodigo.apiores.test.keyboardlisteners.*;
 
 
 public class MainMenu {

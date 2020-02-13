@@ -1,7 +1,7 @@
 package org.academiadecodigo.apiores.test.levels;
 
 import org.academiadecodigo.apiores.test.duck.Duck;
-import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -60,7 +60,7 @@ public class Level3 extends LevelStructure{
             hp.delete();
             hp.draw();
             while (!dead) {
-
+                System.out.println(duck.getX()+" "+duck.getY());
 
                 if (checkCleared()) {
                     Thread.sleep(1500);
@@ -191,13 +191,6 @@ public class Level3 extends LevelStructure{
 
     }
 
-    public void createRobotDuck(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
-
-
-        }
-
-    }
 
 
     public void checkDead(Obstacles obstacle){
@@ -218,7 +211,7 @@ public class Level3 extends LevelStructure{
     public boolean checkCleared() {
 
 
-        if(duck.getY()==PADDING){
+        if(duck.getY()==40 && duck.getX()==500){
             return true;
         }
 

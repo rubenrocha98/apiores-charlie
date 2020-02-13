@@ -2,7 +2,7 @@ package org.academiadecodigo.apiores.test.levels;
 
 
 import org.academiadecodigo.apiores.test.duck.DuckSpaceShip;
-import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -24,7 +24,6 @@ public class Level4 extends LevelStructure{
     private Obstacles[] seventhTrack = new Projectile[3];
     private Obstacles[] eightTrack = new Projectile[2];
     private boolean dead = false;
-    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110, 490, "hp/fullhp.png");
@@ -273,9 +272,7 @@ public class Level4 extends LevelStructure{
     public void createLevel() {
         duck.delete();
         duck = new DuckSpaceShip();
-        levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
-
         createProjectile(firstTrack, -8, 100, 403);
         createProjectile(secondTrack, 10, 120, 353);
         createProjectile(thirdTrack, -9, 100, 311);
