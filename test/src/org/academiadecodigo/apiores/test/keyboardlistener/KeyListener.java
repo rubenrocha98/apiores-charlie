@@ -1,7 +1,7 @@
 package org.academiadecodigo.apiores.test.keyboardlistener;
 
 
-import org.academiadecodigo.apiores.test.levels.LevelStructure;
+import org.academiadecodigo.apiores.test.levels.*;
 import org.academiadecodigo.apiores.test.Game;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -69,65 +69,86 @@ public class KeyListener implements KeyboardHandler {
 
 
             case KeyboardEvent.KEY_UP:
+                if(Game.getCurrentLevel() instanceof Level2){
 
-                if(Game.getCurrentLevel().getDuck().getY()-speed <10 ){
+                }
+                if (Game.getCurrentLevel().getDuck().getY() - speed < 10) {
                     return;
                 }
                 movable.translate(0, -speed);
                 stepIsEven ^= true;
-                if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("duck/Duck1.png");
-                } else{
-                    Game.getCurrentLevel().getDuck().load("duck/Duck3.png");
-                }
+                if (Game.getCurrentLevel() instanceof Level4) {
 
+                } else {
+                    if (stepIsEven) {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck1.png");
+                    } else {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck3.png");
+                    }
+                }
 
                 break;
 
             case KeyboardEvent.KEY_DOWN:
 
-                if(Game.getCurrentLevel().getDuck().getY()+speed+50 > Game.getCurrentLevel().getHEIGHT()-
-                        Game.getCurrentLevel().getDuck().getHeight()+10){
+                if (Game.getCurrentLevel().getDuck().getY() + speed + 50 > Game.getCurrentLevel().getHEIGHT() -
+                        Game.getCurrentLevel().getDuck().getHeight() + 10) {
                     return;
                 }
                 movable.translate(0, speed);
                 stepIsEven ^= true;
-                if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("duck/Duck10.png");
-                } else{
-                    Game.getCurrentLevel().getDuck().load("duck/Duck12.png");
+
+                if (Game.getCurrentLevel() instanceof Level4) {
+
+                } else {
+                    if (stepIsEven) {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck10.png");
+                    } else {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck12.png");
+                    }
                 }
                 break;
-
             case KeyboardEvent.KEY_RIGHT:
 
-                if(Game.getCurrentLevel().getDuck().getX()+speed>
-                        Game.getCurrentLevel().getWIDTH()- Game.getCurrentLevel().getDuck().getWidth()-80){
+                if (Game.getCurrentLevel().getDuck().getX() + speed >
+                        Game.getCurrentLevel().getWIDTH() - Game.getCurrentLevel().getDuck().getWidth() - 80) {
                     return;
                 }
+
                 movable.translate(speed, 0);
-                stepIsEven ^= true;
-                if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("duck/Duck4.png");
-                } else{
-                    Game.getCurrentLevel().getDuck().load("duck/Duck6.png");
+                if (Game.getCurrentLevel() instanceof Level4) {
+
+                } else {
+                    stepIsEven ^= true;
+                    if (stepIsEven) {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck4.png");
+                    } else {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck6.png");
+                    }
+
                 }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
-                if(Game.getCurrentLevel().getDuck().getX()-speed< 100){
+                if (Game.getCurrentLevel().getDuck().getX() - speed < 100) {
                     return;
                 }
-                stepIsEven ^= true;
-                if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("duck/Duck7.png");
-                } else{
-                    Game.getCurrentLevel().getDuck().load("duck/Duck9.png");
-                }
-                movable.translate(-speed, 0);
-                break;
 
+                movable.translate(-speed, 0);
+                stepIsEven ^= true;
+                if (Game.getCurrentLevel() instanceof Level4) {
+
+                } else {
+                    if (stepIsEven) {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck7.png");
+                    } else {
+                        Game.getCurrentLevel().getDuck().load("duck/Duck9.png");
+                    }
+
+
+                }
+                break;
         }
     }
 

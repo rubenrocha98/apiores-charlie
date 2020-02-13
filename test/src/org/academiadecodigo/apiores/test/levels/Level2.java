@@ -66,6 +66,7 @@ public class Level2 extends LevelStructure {
             hp.delete();
             hp.draw();
             while (!dead) {
+                System.out.println(duck.getX()+" "+duck.getY());
 
 
                     if(checkCleared()){
@@ -176,7 +177,7 @@ public class Level2 extends LevelStructure {
 
     }
 
-    public void createBuses(Obstacles[]track, int speed, int atX, int atY){
+    private void createBuses(Obstacles[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
             track[i] = new Bus((i + 1) * atX, atY, speed) {
@@ -185,10 +186,6 @@ public class Level2 extends LevelStructure {
         }
     }
 
-    public void createRobots(Projectile[]track, int speed, int atX, int atY){
-
-        System.out.println();
-    }
 
 
     public void checkDead(Obstacles obstacle){
