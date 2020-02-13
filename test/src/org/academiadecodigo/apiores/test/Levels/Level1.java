@@ -19,34 +19,28 @@ public class Level1 extends LevelStructure {
     private Picture grave;
     private Picture gameOverLet;
 
-    Picture hp = new Picture(110,490, "fullhp.png");
+    private Picture hp = new Picture(110,490, "fullhp.png");
 
     private boolean dead = false;
     private Rectangle levelObjective=new Rectangle(600, 10, 30, 30);
-    Picture border = new Picture(10,10,"border.png");
-    Picture level = new Picture(850,483,"lvl1.png");
-
-
-
+    private Picture border = new Picture(10,10,"border.png");
+    private Picture level = new Picture(850,483,"lvl1.png");
+    private Picture textureDesert = new Picture(100, 10, "Desert_Texture.png");
 
     public Level1() {
 
-        Canvas canvas = Canvas.getInstance();
-        Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
-        canvas.show(rec);
-        Picture textureDesert = new Picture(105, 10, "Texture_Desert.png");
-        textureDesert.grow(10,0);
-        textureDesert.draw();
         duck = new Duck();
-        gameOverLet = new Picture(375,185,"gameover1.png");
+        gameOverLet = new Picture(385,130,"gameOver.png");
 
     }
 
     public void start() throws InterruptedException {
         gameOver=false;
+        textureDesert.draw();
         border.delete();
         level.delete();
-        hp.load("fullHp.png");
+        hp.load("fullhp.png");
+
 
         while (true) {
             if (checkCleared()) {
@@ -65,6 +59,7 @@ public class Level1 extends LevelStructure {
                     hp.delete();
                     border.delete();
                     level.delete();
+                    textureDesert.delete();
                     return;
                 }
 
@@ -121,14 +116,15 @@ public class Level1 extends LevelStructure {
                 gameOver=true;
                 border.draw();
                 level.draw();
-                hp.load("fullHp.png");
+                hp.load("fullhp.png");
             }
+
             border.delete();
             level.delete();
             gameOverLet.delete();
             grave.delete();
             hp.delete();
-
+            textureDesert.delete();
             return;
         }
     }
@@ -148,7 +144,7 @@ public class Level1 extends LevelStructure {
     }
 
 
-    public void createObstacles(Obstacles[] track, int speed, int atX, int atY) {
+    public void createCars(Obstacles[] track, int speed, int atX, int atY) {
         for (int i = 0; i < track.length; i++) {
 
             track[i] = new Car((i + 1) * atX, atY, speed);
@@ -234,10 +230,10 @@ public class Level1 extends LevelStructure {
         duck.draw();
 
 
-        createObstacles(firstTrack, 16, 160, 140);
-        createObstacles(secondTrack, -18, 290, 330);
-        createObstacles(thirdTrack, 12, 150, 390);
-        createObstacles(fourthTrack, -17, 245, 200);
+        createCars(firstTrack, 16, 160, 140);
+        createCars(secondTrack, -18, 290, 330);
+        createCars(thirdTrack, 12, 150, 380);
+        createCars(fourthTrack, -17, 245, 190);
         border.draw();
         level.draw();
     }

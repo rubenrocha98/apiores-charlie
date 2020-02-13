@@ -2,9 +2,9 @@ package org.academiadecodigo.apiores.test.Obstacles;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Robot implements Obstacles{
+public class Projectile implements Obstacles{
 
-    private int height= 25;
+    private int height= 15;
     private int width= 40;
     private Picture obstacle;
     private int speed;
@@ -12,8 +12,13 @@ public class Robot implements Obstacles{
 
 
 
-    public Robot(int atX, int atY, int speed){
-        obstacle = new Picture(atX-width, atY, "Car1_Resized.png");
+    public Projectile(int atX, int atY, int speed){
+        if(speed>0){
+            obstacle = new Picture(atX-width, atY, "projectile-left.png");
+        }else{
+            obstacle = new Picture(atX-width,atY,"projectile.png");
+        }
+
         this.speed = speed;
         obstacle.draw();
 
@@ -28,10 +33,10 @@ public class Robot implements Obstacles{
 
         if(obstacle.getX() < 10){
 
-            obstacle.translate(900,0);
+            obstacle.translate(830,0);
         }
-        if(obstacle.getX() > 920){
-            obstacle.translate(-900,0);
+        if(obstacle.getX() > 930){
+            obstacle.translate(-780,0);
         }
 
 

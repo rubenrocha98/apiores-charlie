@@ -7,14 +7,18 @@ public class Bus implements Obstacles {
 
 
     private int height = 25;
-    private int width = 40;
+    private int width = 71;
     private Picture obstacle;
     private int speed;
 
 
 
     public Bus(int atX, int atY, int speed) {
-        obstacle = new Picture(atX-width, atY, "Car1_Resized.png");
+        if(speed>0){
+            obstacle = new Picture(atX-width,atY,"Bus-left.png");
+        }else{
+            obstacle = new Picture(atX-width, atY, "Bus.png");
+        }
         this.speed = speed;
         obstacle.draw();
     }

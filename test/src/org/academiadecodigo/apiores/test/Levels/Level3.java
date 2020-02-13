@@ -2,13 +2,10 @@ package org.academiadecodigo.apiores.test.Levels;
 
 import org.academiadecodigo.apiores.test.Duck;
 import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.Bus;
-import org.academiadecodigo.apiores.test.Obstacles.Car;
 import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
-import org.academiadecodigo.apiores.test.Obstacles.Robot;
+import org.academiadecodigo.apiores.test.Obstacles.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level3 extends LevelStructure{
@@ -17,35 +14,32 @@ public class Level3 extends LevelStructure{
     private final int WIDTH =  1000 + PADDING;
     private final int HEIGHT =  500 + PADDING;
     private Picture duck;
-    private Obstacles[] firstTrack = new Robot[7];
-    private Obstacles[] secondTrack = new Robot[4];
-    private Obstacles[] thirdTrack = new Robot[5];
-    private Obstacles[] fourthTrack = new Robot[4];
-    private Obstacles[] fifthTrack = new Robot[4];
-    private Obstacles[] sixthTrack = new Robot[7];
-    private Obstacles[] seventhTrack = new Robot[7];
-    private Obstacles[] eightTrack = new Robot[7];
+    private Obstacles[] firstTrack = new Projectile[7];
+    private Obstacles[] secondTrack = new Projectile[4];
+    private Obstacles[] thirdTrack = new Projectile[5];
+    private Obstacles[] fourthTrack = new Projectile[4];
+    private Obstacles[] fifthTrack = new Projectile[4];
+    private Obstacles[] sixthTrack = new Projectile[7];
+    private Obstacles[] seventhTrack = new Projectile[7];
+    private Obstacles[] eightTrack = new Projectile[7];
     private boolean dead = false;
     private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
-    Picture hp = new Picture(110,490, "fullhp.png");
-    Picture border = new Picture(10,10,"border.png");
-    Picture level3 = new Picture(850,483,"lvl3.png");
+    private Picture hp = new Picture(110,490, "fullhp.png");
+    private Picture border = new Picture(10,10,"border.png");
+    private Picture level3 = new Picture(850,483,"lvl3.png");
 
     public Level3() {
 
-        Canvas canvas = Canvas.getInstance();
-        Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
-        canvas.show(rec);
-        Picture textureDesert = new Picture(105, 20, "Desert_Texture.png");
-        textureDesert.draw();
         duck = new Duck();
-        gameOverLet = new Picture(425,197,"gameover1.png");
+        gameOverLet = new Picture(385,130,"gameOver.png");
+
     }
 
     public void start() throws InterruptedException {
-
+        Picture nasaTexture = new Picture(95, 20, "Nasa_Texture.png");
+        nasaTexture.draw();
         while (true) {
             border.delete();
             level3.delete();
@@ -53,7 +47,7 @@ public class Level3 extends LevelStructure{
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
             if(lives == 3){
-                hp.load("fullHp.png");
+                hp.load("fullhp.png");
             }
             if(lives==2){
                 hp.load("2hpleft.png");
@@ -75,7 +69,7 @@ public class Level3 extends LevelStructure{
                     hp.delete();
                     border.delete();
                     level3.delete();
-
+                    nasaTexture.delete();
                     return;
                 }
                 for (Obstacles obstacle : firstTrack) {
@@ -157,7 +151,7 @@ public class Level3 extends LevelStructure{
             grave.delete();
             border.delete();
             level3.delete();
-
+            nasaTexture.delete();
             return;
 
         }
@@ -177,34 +171,22 @@ public class Level3 extends LevelStructure{
         return duck;
     }
 
-    public void createObstacles(Obstacles[]track,int speed,int atX,int atY){
 
-    }
+    public void createProjectile(Obstacles[]track, int speed, int atX, int atY){
+        if(speed>0) {
+            for (int i = 0; i < track.length; i++) {
 
-    public void createCars(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
+                track[i] = new Projectile((i + 1) * atX-150, atY, speed);
 
-            track[i] = new Car((i + 1) * atX, atY, speed) {
-            };
 
-        }
+            }
+        }else{
+            for (int i = track.length; i > 0; i--) {
 
-    }
+                track[i-1] = new Projectile(i  * atX+150, atY, speed);
 
-    public void createBuses(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Bus((i + 1) * atX, atY, speed) {
-            };
-
-        }
-    }
-
-    public void createRobot(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
-
-            track[i] = new Robot((i + 1) * atX, atY, speed) {
-            };
+            }
 
         }
 
@@ -299,14 +281,14 @@ public class Level3 extends LevelStructure{
         levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
-        createRobot(firstTrack, 15, 100, 400);
-        createRobot(secondTrack, 15, 120, 350);
-        createRobot(thirdTrack, -15, 100, 300);
-        createRobot(fourthTrack, 20, 200, 250);
-        createRobot(fifthTrack, -30, 100, 200);
-        createRobot(sixthTrack, -30, 70, 130);
-        createRobot(seventhTrack, 30, 70, 100);
-        createRobot(eightTrack, 30, 100, 50);
+        createProjectile(firstTrack, -15, 100, 413);
+        createProjectile(secondTrack, 15, 120, 363);
+        createProjectile(thirdTrack, -12, 100, 321);
+        createProjectile(fourthTrack, 20, 200, 263);
+        createProjectile(fifthTrack, -30, 100, 234);
+        createProjectile(sixthTrack, 30, 70, 184);
+        createProjectile(seventhTrack, -17, 70, 149);
+        createProjectile(eightTrack, 30, 100, 97 );
 
         border.draw();
         level3.draw();

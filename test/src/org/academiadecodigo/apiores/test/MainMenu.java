@@ -9,27 +9,24 @@ public class MainMenu {
     private final int WIDTH = 1000 + PADDING;
     private final int HEIGHT = 500 + PADDING;
     private static boolean inMenu;
-
-    public MainMenu() {
-
-        Canvas canvas = Canvas.getInstance();
-        Shape rec = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
-        canvas.show(rec);
+    private Canvas canvas = Canvas.getInstance();
+    private Shape rec = new Rectangle(PADDING, PADDING, WIDTH, HEIGHT);
 
 
-    }
 
 
     public void startMenu(){
-        Picture start = new Picture(361,210,"start.png");
+        Picture start = new Picture(10,10,"startMenu.png");
         EnterKeyListener enter = new EnterKeyListener(start);
+
         inMenu=true;
+
         while(inMenu){
 
-            start.draw();
-
+            canvas.show(start);
         }
-        start.delete();
+
+        canvas.hide(start);
     }
 
     public static void exitMenu(){

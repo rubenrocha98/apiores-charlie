@@ -24,19 +24,18 @@ public class Level2 extends LevelStructure {
     private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490,"fullHp.png");
-    Picture border = new Picture(10,10,"border.png");
-    Picture level2 = new Picture(850,483,"lvl2.png");
+    private Picture hp = new Picture(110,490,"fullhp.png");
+    private Picture border = new Picture(10,10,"border.png");
+    private Picture level2 = new Picture(850,483,"lvl2.png");
 
+    private Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
+    private Picture cityTexture = new Picture(100, 10, "City_Texture3.png");
     public Level2() {
 
-        Canvas canvas = Canvas.getInstance();
-        Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
-        canvas.show(rec);
-        Picture textureDesert = new Picture(105, 20, "Texture_Desert.png");
-        textureDesert.draw();
+
+
         duck = new Duck();
-        gameOverLet = new Picture(425,197,"gameover1.png");
+        gameOverLet = new Picture(385,130,"gameOver.png");
 
         // when rectangle and levelObjective share the same position the level clears
 
@@ -44,6 +43,7 @@ public class Level2 extends LevelStructure {
     }
 
     public void start() throws InterruptedException {
+        cityTexture.draw();
         while(true) {
             border.delete();
             level2.delete();
@@ -53,7 +53,7 @@ public class Level2 extends LevelStructure {
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
             if(lives==3){
-                hp.load("fullHp.png");
+                hp.load("fullhp.png");
             }
             if(lives==2){
                 hp.load("2hpleft.png");
@@ -75,6 +75,7 @@ public class Level2 extends LevelStructure {
                         hp.delete();
                         level2.delete();
                         border.delete();
+                        cityTexture.draw();
                         return;
                     }
                 for (Obstacles obstacle : firstTrack) {
@@ -147,7 +148,7 @@ public class Level2 extends LevelStructure {
             grave.delete();
             border.delete();
             level2.delete();
-
+            cityTexture.draw();
             return;
 
         }
@@ -165,9 +166,6 @@ public class Level2 extends LevelStructure {
         return duck;
     }
 
-    public void createObstacles(Obstacles[]track,int speed,int atX,int atY){
-
-    }
 
     public void createCars(Obstacles[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
@@ -188,7 +186,7 @@ public class Level2 extends LevelStructure {
         }
     }
 
-    public void createRobots(Robot[]track, int speed, int atX, int atY){
+    public void createRobots(Projectile[]track, int speed, int atX, int atY){
 
         System.out.println();
     }
@@ -270,12 +268,12 @@ public class Level2 extends LevelStructure {
         duck.draw();
 
 
-        createCars(firstTrack, 12, 145, 400);
-        createBuses(secondTrack, 17, 250, 350);
-        createCars(thirdTrack, -15, 150, 220);
-        createCars(fourthTrack,15,145,270);
-        createCars(fifthTrack, 14, 145, 150);
-        createCars(sixthTrack, -12, 115, 100);
+        createCars(firstTrack, 12, 145, 390);
+        createBuses(secondTrack, 17, 250, 340);
+        createCars(thirdTrack, -15, 150, 210);
+        createCars(fourthTrack,15,145,260);
+        createCars(fifthTrack, 14, 145, 140);
+        createCars(sixthTrack, -12, 115, 90);
         border.draw();
         level2.draw();
 

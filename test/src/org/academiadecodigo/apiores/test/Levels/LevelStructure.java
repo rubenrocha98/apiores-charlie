@@ -28,7 +28,6 @@ public abstract class LevelStructure {
 
      public  abstract Picture getDuck();
 
-     public abstract void createObstacles(Obstacles[]track, int speed, int atX, int atY);
 
      public abstract void checkDead(Obstacles obstacles);
 
