@@ -1,10 +1,9 @@
-package org.academiadecodigo.apiores.test.Levels;
+package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.Duck;
-import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
-import org.academiadecodigo.apiores.test.Obstacles.Projectile;
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.apiores.test.duck.Duck;
+import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.obstacle.Obstacles;
+import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -26,19 +25,19 @@ public class Level3 extends LevelStructure{
     private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490, "fullhp.png");
-    private Picture border = new Picture(10,10,"border.png");
-    private Picture level3 = new Picture(850,483,"lvl3.png");
+    private Picture hp = new Picture(110,490, "hp/fullhp.png");
+    private Picture border = new Picture(10,10, "backgrounds/border.png");
+    private Picture level3 = new Picture(850,483, "lvls/lvl3.png");
 
     public Level3() {
 
         duck = new Duck();
-        gameOverLet = new Picture(385,130,"gameOver.png");
+        gameOverLet = new Picture(385,130, "dead/gameOver.png");
 
     }
 
     public void start() throws InterruptedException {
-        Picture nasaTexture = new Picture(95, 10, "Nasa_Texture.png");
+        Picture nasaTexture = new Picture(95, 10, "backgrounds/Nasa_Texture.png");
         nasaTexture.draw();
         while (true) {
             border.delete();
@@ -47,16 +46,16 @@ public class Level3 extends LevelStructure{
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
             if(lives == 3){
-                hp.load("fullhp.png");
+                hp.load("hp/fullhp.png");
             }
             if(lives==2){
-                hp.load("2hpleft.png");
+                hp.load("hp/2hpleft.png");
             }
             if(lives==1){
-                hp.load("1hpleft.png");
+                hp.load("hp/1hpleft.png");
             }
             if(lives==0){
-                hp.load("nohpleft.png");
+                hp.load("hp/nohpleft.png");
             }
             hp.delete();
             hp.draw();
@@ -115,7 +114,7 @@ public class Level3 extends LevelStructure{
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
@@ -123,13 +122,13 @@ public class Level3 extends LevelStructure{
                 grave.delete();
                 hp.delete();
                 if(lives==2){
-                    hp = new Picture(110,490, "2hpleft.png");
+                    hp = new Picture(110,490, "hp/2hpleft.png");
                 }
                 if(lives==1){
-                    hp = new Picture(110,490, "1hpleft.png");
+                    hp = new Picture(110,490, "hp/1hpleft.png");
                 }
                 if(lives==0){
-                    hp = new Picture(110, 490,"nohpleft.png");
+                    hp = new Picture(110, 490, "hp/nohpleft.png");
                 }
                 if (lives != 0) {
                     continue;

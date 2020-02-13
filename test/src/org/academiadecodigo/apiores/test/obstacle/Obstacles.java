@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.test.Obstacles;
+package org.academiadecodigo.apiores.test.obstacle;
 
 
 import org.academiadecodigo.simplegraphics.pictures.*;

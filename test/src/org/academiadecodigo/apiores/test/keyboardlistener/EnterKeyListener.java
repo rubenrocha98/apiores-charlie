@@ -1,6 +1,6 @@
-package org.academiadecodigo.apiores.test.KeyboardListener;
+package org.academiadecodigo.apiores.test.keyboardlistener;
 
-import org.academiadecodigo.apiores.test.MainMenu;
+import org.academiadecodigo.apiores.test.mainmenu.MainMenu;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.*;
 

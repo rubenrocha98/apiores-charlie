@@ -1,8 +1,8 @@
-package org.academiadecodigo.apiores.test.Levels;
+package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.Duck;
-import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.*;
+import org.academiadecodigo.apiores.test.duck.Duck;
+import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.obstacle.*;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -19,27 +19,31 @@ public class Level1 extends LevelStructure {
     private Picture grave;
     private Picture gameOverLet;
 
-    private Picture hp = new Picture(110,490, "fullhp.png");
+    private Picture hp = new Picture(110,490, "hp/fullhp.png");
 
     private boolean dead = false;
     private Rectangle levelObjective=new Rectangle(600, 10, 30, 30);
-    private Picture border = new Picture(10,10,"border.png");
-    private Picture level = new Picture(850,483,"lvl1.png");
-    private Picture textureDesert = new Picture(100, 10, "Desert_Texture.png");
+    private Picture border = new Picture(10,10, "backgrounds/border.png");
+    private Picture level = new Picture(850,483, "lvls/lvl1.png");
+    private Picture textureDesert = new Picture(100, 10, "backgrounds/Desert_Texture.png");
+
+
+
 
     public Level1() {
-
         duck = new Duck();
-        gameOverLet = new Picture(385,130,"gameOver.png");
-
+        gameOverLet = new Picture(385,130, "dead/gameOver.png");
     }
+
+
+
 
     public void start() throws InterruptedException {
         gameOver=false;
         textureDesert.draw();
         border.delete();
         level.delete();
-        hp.load("fullhp.png");
+        hp.load("hp/fullhp.png");
 
 
         while (true) {
@@ -89,7 +93,7 @@ public class Level1 extends LevelStructure {
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
@@ -97,13 +101,13 @@ public class Level1 extends LevelStructure {
                 grave.delete();
 
                 if(lives==2){
-                    hp.load("2hpleft.png");
+                    hp.load("hp/2hpleft.png");
                 }
                 if(lives==1){
-                    hp.load("1hpleft.png");
+                    hp.load("hp/1hpleft.png");
                 }
                 if(lives==0){
-                    hp.load("nohpleft.png");
+                    hp.load("hp/nohpleft.png");
                 }
                 if (lives != 0) {
                     continue;
@@ -116,7 +120,7 @@ public class Level1 extends LevelStructure {
                 gameOver=true;
                 border.draw();
                 level.draw();
-                hp.load("fullhp.png");
+                hp.load("hp/fullhp.png");
             }
 
             border.delete();

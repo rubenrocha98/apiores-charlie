@@ -1,6 +1,5 @@
-package org.academiadecodigo.apiores.test.Obstacles;
+package org.academiadecodigo.apiores.test.obstacle;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bus implements Obstacles {
@@ -15,9 +14,9 @@ public class Bus implements Obstacles {
 
     public Bus(int atX, int atY, int speed) {
         if(speed>0){
-            obstacle = new Picture(atX-width,atY,"Bus-left.png");
+            obstacle = new Picture(atX-width,atY, "bus/Bus-left.png");
         }else{
-            obstacle = new Picture(atX-width, atY, "Bus.png");
+            obstacle = new Picture(atX-width, atY, "bus/Bus.png");
         }
         this.speed = speed;
         obstacle.draw();

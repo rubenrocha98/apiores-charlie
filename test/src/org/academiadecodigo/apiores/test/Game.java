@@ -1,7 +1,9 @@
 package org.academiadecodigo.apiores.test;
 
-import org.academiadecodigo.apiores.test.Levels.*;
-import org.academiadecodigo.apiores.test.Levels.LevelStructure;
+import org.academiadecodigo.apiores.test.levels.*;
+import org.academiadecodigo.apiores.test.levels.LevelStructure;
+import org.academiadecodigo.apiores.test.mainmenu.MainMenu;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
@@ -31,6 +33,7 @@ public class Game {
             if(LevelStructure.isGameOver()){
                 continue;
             }
+            Picture end = new Picture();
 
 
 

@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.test.Obstacles;
+package org.academiadecodigo.apiores.test.obstacle;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -14,9 +14,9 @@ public class Projectile implements Obstacles{
 
     public Projectile(int atX, int atY, int speed){
         if(speed>0){
-            obstacle = new Picture(atX-width, atY, "projectile-left.png");
+            obstacle = new Picture(atX-width, atY, "projectile/projectile-left.png");
         }else{
-            obstacle = new Picture(atX-width,atY,"projectile.png");
+            obstacle = new Picture(atX-width,atY, "projectile/projectile.png");
         }
 
         this.speed = speed;
