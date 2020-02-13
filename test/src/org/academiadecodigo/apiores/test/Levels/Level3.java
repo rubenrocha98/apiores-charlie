@@ -38,7 +38,7 @@ public class Level3 extends LevelStructure{
     }
 
     public void start() throws InterruptedException {
-        Picture nasaTexture = new Picture(95, 20, "Nasa_Texture.png");
+        Picture nasaTexture = new Picture(95, 10, "Nasa_Texture.png");
         nasaTexture.draw();
         while (true) {
             border.delete();
@@ -281,14 +281,14 @@ public class Level3 extends LevelStructure{
         levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
-        createProjectile(firstTrack, -15, 100, 413);
-        createProjectile(secondTrack, 15, 120, 363);
-        createProjectile(thirdTrack, -12, 100, 321);
-        createProjectile(fourthTrack, 20, 200, 263);
-        createProjectile(fifthTrack, -30, 100, 234);
-        createProjectile(sixthTrack, 30, 70, 184);
-        createProjectile(seventhTrack, -17, 70, 149);
-        createProjectile(eightTrack, 30, 100, 97 );
+        createProjectile(firstTrack, -15, 100, 403);
+        createProjectile(secondTrack, 15, 120, 353);
+        createProjectile(thirdTrack, -12, 100, 311);
+        createProjectile(fourthTrack, 20, 200, 253);
+        createProjectile(fifthTrack, -30, 100, 224);
+        createProjectile(sixthTrack, 30, 70, 174);
+        createProjectile(seventhTrack, -17, 70, 139);
+        createProjectile(eightTrack, 30, 100, 87 );
 
         border.draw();
         level3.draw();

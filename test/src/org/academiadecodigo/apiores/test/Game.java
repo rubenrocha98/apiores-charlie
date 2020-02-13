@@ -6,10 +6,9 @@ import org.academiadecodigo.apiores.test.Levels.LevelStructure;
 public class Game {
 
     private static int currentLevel =0;
-    private static LevelStructure[] levels={new Level1(),new Level2(),new Level3() };
+    private static LevelStructure[] levels={new Level3(),new Level2(),new Level3() };
     private MainMenu startMenu = new MainMenu();
 
-    private boolean mainMenu=true;
     public void game() throws InterruptedException {
 
 

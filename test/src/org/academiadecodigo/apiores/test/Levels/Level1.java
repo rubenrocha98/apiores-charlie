@@ -230,7 +230,7 @@ public class Level1 extends LevelStructure {
         duck.draw();
 
 
-        createCars(firstTrack, 16, 160, 140);
+        createCars(firstTrack, 13, 160, 140);
         createCars(secondTrack, -18, 290, 330);
         createCars(thirdTrack, 12, 150, 380);
         createCars(fourthTrack, -17, 245, 190);

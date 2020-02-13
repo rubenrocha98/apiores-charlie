@@ -75,7 +75,7 @@ public class Level2 extends LevelStructure {
                         hp.delete();
                         level2.delete();
                         border.delete();
-                        cityTexture.draw();
+                        cityTexture.delete();
                         return;
                     }
                 for (Obstacles obstacle : firstTrack) {
