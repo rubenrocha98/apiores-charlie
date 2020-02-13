@@ -1,44 +1,45 @@
-package org.academiadecodigo.apiores.test.Levels;
+package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.Duck;
-import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
-import org.academiadecodigo.apiores.test.Obstacles.Projectile;
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.academiadecodigo.apiores.test.duck.Duck;
+import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.levels.LevelStructure;
+import org.academiadecodigo.apiores.test.obstacle.Obstacles;
+import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Level3 extends LevelStructure{
+public class Level4 extends LevelStructure{
+
 
     private final int PADDING = 10;
-    private final int WIDTH =  1000 + PADDING;
-    private final int HEIGHT =  500 + PADDING;
+    private final int WIDTH = 1000 + PADDING;
+    private final int HEIGHT = 500 + PADDING;
     private Picture duck;
     private Obstacles[] firstTrack = new Projectile[7];
     private Obstacles[] secondTrack = new Projectile[4];
     private Obstacles[] thirdTrack = new Projectile[5];
     private Obstacles[] fourthTrack = new Projectile[4];
     private Obstacles[] fifthTrack = new Projectile[4];
-    private Obstacles[] sixthTrack = new Projectile[7];
-    private Obstacles[] seventhTrack = new Projectile[7];
-    private Obstacles[] eightTrack = new Projectile[7];
+    private Obstacles[] sixthTrack = new Projectile[5];
+    private Obstacles[] seventhTrack = new Projectile[3];
+    private Obstacles[] eightTrack = new Projectile[2];
     private boolean dead = false;
-    private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
+    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490, "fullhp.png");
-    private Picture border = new Picture(10,10,"border.png");
-    private Picture level3 = new Picture(850,483,"lvl3.png");
+    private Picture hp = new Picture(110, 490, "hp/fullhp.png");
+    private Picture border = new Picture(10, 10, "backgrounds/border.png");
+    private Picture level3 = new Picture(850, 483, "lvls/lvl3.png");
 
-    public Level3() {
+    public Level4() {
 
         duck = new Duck();
-        gameOverLet = new Picture(385,130,"gameOver.png");
+        gameOverLet = new Picture(385, 130, "dead/gameOver.png");
 
     }
 
     public void start() throws InterruptedException {
-        Picture nasaTexture = new Picture(95, 20, "Nasa_Texture.png");
+        Picture nasaTexture = new Picture(95, 10, "backgrounds/Nasa_Texture.png");
         nasaTexture.draw();
         while (true) {
             border.delete();
@@ -46,17 +47,17 @@ public class Level3 extends LevelStructure{
 
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
-            if(lives == 3){
-                hp.load("fullhp.png");
+            if (lives == 3) {
+                hp.load("hp/fullhp.png");
             }
-            if(lives==2){
-                hp.load("2hpleft.png");
+            if (lives == 2) {
+                hp.load("hp/2hpleft.png");
             }
-            if(lives==1){
-                hp.load("1hpleft.png");
+            if (lives == 1) {
+                hp.load("hp/1hpleft.png");
             }
-            if(lives==0){
-                hp.load("nohpleft.png");
+            if (lives == 0) {
+                hp.load("hp/nohpleft.png");
             }
             hp.delete();
             hp.draw();
@@ -115,21 +116,21 @@ public class Level3 extends LevelStructure{
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
                 grave.delete();
                 hp.delete();
-                if(lives==2){
-                    hp = new Picture(110,490, "2hpleft.png");
+                if (lives == 2) {
+                    hp = new Picture(110, 490, "hp/2hpleft.png");
                 }
-                if(lives==1){
-                    hp = new Picture(110,490, "1hpleft.png");
+                if (lives == 1) {
+                    hp = new Picture(110, 490, "hp/1hpleft.png");
                 }
-                if(lives==0){
-                    hp = new Picture(110, 490,"nohpleft.png");
+                if (lives == 0) {
+                    hp = new Picture(110, 490, "hp/nohpleft.png");
                 }
                 if (lives != 0) {
                     continue;
@@ -137,12 +138,12 @@ public class Level3 extends LevelStructure{
             }
 
             hp.draw();
-            while(lives == 0) {
+            while (lives == 0) {
                 grave.draw();
                 border.draw();
                 level3.draw();
                 gameOverLet.draw();
-                gameOver=true;
+                gameOver = true;
 
             }
             hp.delete();
@@ -158,32 +159,33 @@ public class Level3 extends LevelStructure{
 
     }
 
-    public  int getWIDTH(){
+    public int getWIDTH() {
         return WIDTH;
 
 
     }
-    public  int getHEIGHT(){
+
+    public int getHEIGHT() {
         return HEIGHT;
     }
 
-    public  Picture getDuck(){
+    public Picture getDuck() {
         return duck;
     }
 
 
-    public void createProjectile(Obstacles[]track, int speed, int atX, int atY){
-        if(speed>0) {
+    public void createProjectile(Obstacles[] track, int speed, int atX, int atY) {
+        if (speed > 0) {
             for (int i = 0; i < track.length; i++) {
 
-                track[i] = new Projectile((i + 1) * atX-150, atY, speed);
+                track[i] = new Projectile((i + 1) * atX - 150, atY, speed);
 
 
             }
-        }else{
+        } else {
             for (int i = track.length; i > 0; i--) {
 
-                track[i-1] = new Projectile(i  * atX+150, atY, speed);
+                track[i - 1] = new Projectile(i * atX + 150, atY, speed);
 
 
             }
@@ -192,7 +194,7 @@ public class Level3 extends LevelStructure{
 
     }
 
-    public void createRobotDuck(Obstacles[]track, int speed, int atX, int atY){
+    public void createRobotDuck(Obstacles[] track, int speed, int atX, int atY) {
         for (int i = 0; i < track.length; i++) {
 
 
@@ -201,14 +203,14 @@ public class Level3 extends LevelStructure{
     }
 
 
-    public void checkDead(Obstacles obstacle){
+    public void checkDead(Obstacles obstacle) {
 
 
-        for(int j = duck.getX(); j<=duck.getX()+duck.getWidth();j++) {
-            for(int k = duck.getY(); k<=duck.getY()+duck.getHeight();k++){
+        for (int j = duck.getX(); j <= duck.getX() + duck.getWidth(); j++) {
+            for (int k = duck.getY(); k <= duck.getY() + duck.getHeight(); k++) {
 
-                if(obstacle.getObstacle().getX() < j &&  obstacle.getObstacle().getX()+obstacle.getWidth() > j &&
-                        obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY()+obstacle.getHeight() >k){
+                if (obstacle.getObstacle().getX() < j && obstacle.getObstacle().getX() + obstacle.getWidth() > j &&
+                        obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY() + obstacle.getHeight() > k) {
                     dead = true;
                 }
             }
@@ -219,7 +221,7 @@ public class Level3 extends LevelStructure{
     public boolean checkCleared() {
 
 
-        if(duck.getY()==PADDING){
+        if (duck.getY() == PADDING) {
             return true;
         }
 
@@ -228,12 +230,11 @@ public class Level3 extends LevelStructure{
     }
 
 
-
     public boolean isDead() {
         return dead;
     }
 
-    public void restartLevel(){
+    public void restartLevel() {
         duck.delete();
         deleteObstacles(firstTrack);
         deleteObstacles(secondTrack);
@@ -246,10 +247,11 @@ public class Level3 extends LevelStructure{
         border.delete();
         level3.delete();
 
-        dead=false;
+        dead = false;
     }
-    public void restart(){
-        lives=3;
+
+    public void restart() {
+        lives = 3;
     }
 
 
@@ -266,7 +268,7 @@ public class Level3 extends LevelStructure{
 
     }
 
-    public void deleteObstacles(Obstacles[]track){
+    public void deleteObstacles(Obstacles[] track) {
         for (int i = 0; i < track.length; i++) {
 
             track[i].getObstacle().delete();
@@ -275,20 +277,20 @@ public class Level3 extends LevelStructure{
 
     }
 
-    public void createLevel(){
+    public void createLevel() {
         duck.delete();
         duck = new Duck();
         levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
-        createProjectile(firstTrack, -15, 100, 413);
-        createProjectile(secondTrack, 15, 120, 363);
-        createProjectile(thirdTrack, -12, 100, 321);
-        createProjectile(fourthTrack, 20, 200, 263);
-        createProjectile(fifthTrack, -30, 100, 234);
-        createProjectile(sixthTrack, 30, 70, 184);
-        createProjectile(seventhTrack, -17, 70, 149);
-        createProjectile(eightTrack, 30, 100, 97 );
+        createProjectile(firstTrack, -8, 100, 403);
+        createProjectile(secondTrack, 10, 120, 353);
+        createProjectile(thirdTrack, -9, 100, 311);
+        createProjectile(fourthTrack, 15, 200, 253);
+        createProjectile(fifthTrack, -20, 100, 224);
+        createProjectile(sixthTrack, 20, 70, 174);
+        createProjectile(seventhTrack, -17, 70, 139);
+        createProjectile(eightTrack, 17, 100, 87);
 
         border.draw();
         level3.draw();
@@ -296,5 +298,5 @@ public class Level3 extends LevelStructure{
     }
 
 
-
 }
+

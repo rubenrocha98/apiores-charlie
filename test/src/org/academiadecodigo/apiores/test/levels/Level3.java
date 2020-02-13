@@ -1,83 +1,76 @@
-package org.academiadecodigo.apiores.test.Levels;
+package org.academiadecodigo.apiores.test.levels;
 
-
-import org.academiadecodigo.apiores.test.Duck;
-import org.academiadecodigo.apiores.test.KeyboardListener.KeyListener;
-import org.academiadecodigo.apiores.test.Obstacles.*;
-import org.academiadecodigo.simplegraphics.graphics.*;
+import org.academiadecodigo.apiores.test.duck.Duck;
+import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.obstacle.Obstacles;
+import org.academiadecodigo.apiores.test.obstacle.Projectile;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Level2 extends LevelStructure {
+public class Level3 extends LevelStructure{
 
     private final int PADDING = 10;
-    private final  int WIDTH =  1000+ PADDING;
-    private final  int HEIGHT =  500+ PADDING;
+    private final int WIDTH =  1000 + PADDING;
+    private final int HEIGHT =  500 + PADDING;
     private Picture duck;
-    private Obstacles[] firstTrack = new Car[5];
-    private Obstacles[] secondTrack = new Bus[3];
-    private Obstacles[] thirdTrack = new Car[5];
-    private Obstacles[] fourthTrack = new Car[4];
-    private Obstacles[] fifthTrack = new Car[4];
-    private Obstacles[] sixthTrack = new Car[4];
-
+    private Obstacles[] firstTrack = new Projectile[7];
+    private Obstacles[] secondTrack = new Projectile[4];
+    private Obstacles[] thirdTrack = new Projectile[5];
+    private Obstacles[] fourthTrack = new Projectile[4];
+    private Obstacles[] fifthTrack = new Projectile[4];
+    private Obstacles[] sixthTrack = new Projectile[5];
+    private Obstacles[] seventhTrack = new Projectile[3];
+    private Obstacles[] eightTrack = new Projectile[2];
     private boolean dead = false;
-    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
+    private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490,"fullhp.png");
-    private Picture border = new Picture(10,10,"border.png");
-    private Picture level2 = new Picture(850,483,"lvl2.png");
+    private Picture hp = new Picture(110,490, "hp/fullhp.png");
+    private Picture border = new Picture(10,10, "backgrounds/border.png");
+    private Picture level3 = new Picture(850,483, "lvls/lvl3.png");
 
-    private Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
-    private Picture cityTexture = new Picture(100, 10, "City_Texture3.png");
-    public Level2() {
-
-
+    public Level3() {
 
         duck = new Duck();
-        gameOverLet = new Picture(385,130,"gameOver.png");
-
-        // when rectangle and levelObjective share the same position the level clears
-
+        gameOverLet = new Picture(385,130, "dead/gameOver.png");
 
     }
 
     public void start() throws InterruptedException {
-        cityTexture.draw();
-        while(true) {
+        Picture nasaTexture = new Picture(95, 10, "backgrounds/Nasa_Texture.png");
+        nasaTexture.draw();
+        while (true) {
             border.delete();
-            level2.delete();
+            level3.delete();
 
-
-            hp.delete();
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
-            if(lives==3){
-                hp.load("fullhp.png");
+            if(lives == 3){
+                hp.load("hp/fullhp.png");
             }
             if(lives==2){
-                hp.load("2hpleft.png");
+                hp.load("hp/2hpleft.png");
             }
             if(lives==1){
-                hp.load("1hpleft.png");
+                hp.load("hp/1hpleft.png");
             }
             if(lives==0){
-                hp.load("nohpleft.png");
+                hp.load("hp/nohpleft.png");
             }
             hp.delete();
             hp.draw();
             while (!dead) {
 
 
-                    if(checkCleared()){
-                        Thread.sleep(1500);
-                        deleteLevel();
-                        hp.delete();
-                        level2.delete();
-                        border.delete();
-                        cityTexture.draw();
-                        return;
-                    }
+                if (checkCleared()) {
+                    Thread.sleep(1500);
+                    deleteLevel();
+                    hp.delete();
+                    border.delete();
+                    level3.delete();
+                    nasaTexture.delete();
+                    return;
+                }
                 for (Obstacles obstacle : firstTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
@@ -92,7 +85,8 @@ public class Level2 extends LevelStructure {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
-                for (Obstacles obstacle: fourthTrack){
+
+                for (Obstacles obstacle : fourthTrack) {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
@@ -104,6 +98,14 @@ public class Level2 extends LevelStructure {
                     obstacle.moveObstacle();
                     checkDead(obstacle);
                 }
+                for (Obstacles obstacle : seventhTrack) {
+                    obstacle.moveObstacle();
+                    checkDead(obstacle);
+                }
+                for (Obstacles obstacle : eightTrack) {
+                    obstacle.moveObstacle();
+                    checkDead(obstacle);
+                }
 
                 Thread.sleep(75);
 
@@ -112,47 +114,49 @@ public class Level2 extends LevelStructure {
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "grave_resized.png");
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
                 restartLevel();
                 grave.delete();
+                hp.delete();
                 if(lives==2){
-                    hp.load("2hpleft.png");
+                    hp = new Picture(110,490, "hp/2hpleft.png");
                 }
                 if(lives==1){
-                    hp.load("1hpleft.png");
+                    hp = new Picture(110,490, "hp/1hpleft.png");
                 }
                 if(lives==0){
-                    hp.load("nohpleft.png");
+                    hp = new Picture(110, 490, "hp/nohpleft.png");
                 }
                 if (lives != 0) {
                     continue;
                 }
             }
 
-
+            hp.draw();
             while(lives == 0) {
                 grave.draw();
-
+                border.draw();
+                level3.draw();
                 gameOverLet.draw();
                 gameOver=true;
-                border.draw();
-                level2.draw();
 
             }
-
             hp.delete();
+
             gameOverLet.delete();
             grave.delete();
             border.delete();
-            level2.delete();
-            cityTexture.draw();
+            level3.delete();
+            nasaTexture.delete();
             return;
 
         }
+
     }
+
     public  int getWIDTH(){
         return WIDTH;
 
@@ -167,28 +171,32 @@ public class Level2 extends LevelStructure {
     }
 
 
-    public void createCars(Obstacles[]track, int speed, int atX, int atY){
-        for (int i = 0; i < track.length; i++) {
+    public void createProjectile(Obstacles[]track, int speed, int atX, int atY){
+        if(speed>0) {
+            for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Car((i + 1) * atX, atY, speed) {
-            };
+                track[i] = new Projectile((i + 1) * atX-150, atY, speed);
+
+
+            }
+        }else{
+            for (int i = track.length; i > 0; i--) {
+
+                track[i-1] = new Projectile(i  * atX+150, atY, speed);
+
+
+            }
 
         }
 
     }
 
-    public void createBuses(Obstacles[]track, int speed, int atX, int atY){
+    public void createRobotDuck(Obstacles[]track, int speed, int atX, int atY){
         for (int i = 0; i < track.length; i++) {
 
-            track[i] = new Bus((i + 1) * atX, atY, speed) {
-            };
 
         }
-    }
 
-    public void createRobots(Projectile[]track, int speed, int atX, int atY){
-
-        System.out.println();
     }
 
 
@@ -223,6 +231,7 @@ public class Level2 extends LevelStructure {
     public boolean isDead() {
         return dead;
     }
+
     public void restartLevel(){
         duck.delete();
         deleteObstacles(firstTrack);
@@ -231,14 +240,16 @@ public class Level2 extends LevelStructure {
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
         deleteObstacles(sixthTrack);
+        deleteObstacles(seventhTrack);
+        deleteObstacles(eightTrack);
         border.delete();
-        level2.delete();
+        level3.delete();
+
         dead=false;
     }
     public void restart(){
         lives=3;
     }
-
 
 
     public void deleteLevel() {
@@ -249,6 +260,8 @@ public class Level2 extends LevelStructure {
         deleteObstacles(fourthTrack);
         deleteObstacles(fifthTrack);
         deleteObstacles(sixthTrack);
+        deleteObstacles(seventhTrack);
+        deleteObstacles(eightTrack);
 
     }
 
@@ -267,16 +280,17 @@ public class Level2 extends LevelStructure {
         levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
+        createProjectile(firstTrack, -8, 100, 403);
+        createProjectile(secondTrack, 10, 120, 353);
+        createProjectile(thirdTrack, -9, 100, 311);
+        createProjectile(fourthTrack, 15, 200, 253);
+        createProjectile(fifthTrack, -20, 100, 224);
+        createProjectile(sixthTrack, 20, 70, 174);
+        createProjectile(seventhTrack, -17, 70, 139);
+        createProjectile(eightTrack, 17, 100, 87 );
 
-        createCars(firstTrack, 12, 145, 390);
-        createBuses(secondTrack, 17, 250, 340);
-        createCars(thirdTrack, -15, 150, 210);
-        createCars(fourthTrack,15,145,260);
-        createCars(fifthTrack, 14, 145, 140);
-        createCars(sixthTrack, -12, 115, 90);
         border.draw();
-        level2.draw();
-
+        level3.draw();
 
     }
 

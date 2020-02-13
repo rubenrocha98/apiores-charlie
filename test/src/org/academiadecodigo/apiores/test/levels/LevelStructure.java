@@ -1,6 +1,6 @@
-package org.academiadecodigo.apiores.test.Levels;
+package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.Obstacles.Obstacles;
+import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.*;
 

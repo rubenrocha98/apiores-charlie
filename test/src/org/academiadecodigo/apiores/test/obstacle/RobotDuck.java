@@ -1,4 +1,4 @@
-package org.academiadecodigo.apiores.test.Obstacles;
+package org.academiadecodigo.apiores.test.obstacle;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -14,7 +14,7 @@ public class RobotDuck implements Obstacles{
 
 
     public RobotDuck(int atX, int atY, int speed){
-        obstacle = new Picture(atX-width, atY, "Car1_Resized.png");
+        obstacle = new Picture(atX-width, atY, "cars/Car1_Resized.png");
         this.speed = speed;
         obstacle.draw();
 

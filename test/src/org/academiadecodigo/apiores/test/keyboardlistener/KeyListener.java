@@ -1,7 +1,7 @@
-package org.academiadecodigo.apiores.test.KeyboardListener;
+package org.academiadecodigo.apiores.test.keyboardlistener;
 
 
-import org.academiadecodigo.apiores.test.Levels.LevelStructure;
+import org.academiadecodigo.apiores.test.levels.LevelStructure;
 import org.academiadecodigo.apiores.test.Game;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -76,9 +76,9 @@ public class KeyListener implements KeyboardHandler {
                 movable.translate(0, -speed);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("Duck1.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck1.png");
                 } else{
-                    Game.getCurrentLevel().getDuck().load("Duck3.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck3.png");
                 }
 
 
@@ -93,9 +93,9 @@ public class KeyListener implements KeyboardHandler {
                 movable.translate(0, speed);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("Duck10.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck10.png");
                 } else{
-                    Game.getCurrentLevel().getDuck().load("Duck12.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck12.png");
                 }
                 break;
 
@@ -108,9 +108,9 @@ public class KeyListener implements KeyboardHandler {
                 movable.translate(speed, 0);
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("Duck4.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck4.png");
                 } else{
-                    Game.getCurrentLevel().getDuck().load("Duck6.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck6.png");
                 }
                 break;
 
@@ -121,9 +121,9 @@ public class KeyListener implements KeyboardHandler {
                 }
                 stepIsEven ^= true;
                 if (stepIsEven) {
-                    Game.getCurrentLevel().getDuck().load("Duck7.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck7.png");
                 } else{
-                    Game.getCurrentLevel().getDuck().load("Duck9.png");
+                    Game.getCurrentLevel().getDuck().load("duck/Duck9.png");
                 }
                 movable.translate(-speed, 0);
                 break;
