@@ -1,7 +1,7 @@
 package org.academiadecodigo.apiores.test.levels;
 
 import org.academiadecodigo.apiores.test.duck.Duck;
-import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.*;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;

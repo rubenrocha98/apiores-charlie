@@ -8,11 +8,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private static int currentLevel =0;
-    private static LevelStructure[] levels={new Level3(),new Level2(),new Level3() };
-    private MainMenu startMenu = new MainMenu();
+    private static LevelStructure[] levels={new Level4(),new Level2(),new Level3(),new Level4()};
 
     public void game() throws InterruptedException {
-
+        MainMenu startMenu = new MainMenu();
 
         while (true) {
 
@@ -33,6 +32,13 @@ public class Game {
             if(LevelStructure.isGameOver()){
                 continue;
             }
+
+            currentLevel++;
+            levels[currentLevel].start();
+            if(LevelStructure.isGameOver()){
+                continue;
+            }
+
             Picture end = new Picture(10,10,"backgrounds/end.png");
             end.draw();
             Thread.sleep(15000);

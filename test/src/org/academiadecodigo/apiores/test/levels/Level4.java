@@ -1,10 +1,10 @@
 package org.academiadecodigo.apiores.test.levels;
 
-import org.academiadecodigo.apiores.test.duck.Duck;
-import org.academiadecodigo.apiores.test.keyboardlistener.KeyListener;
+
+import org.academiadecodigo.apiores.test.duck.DuckSpaceShip;
+import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
+import org.academiadecodigo.apiores.test.obstacle.Comet;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
-import org.academiadecodigo.apiores.test.obstacle.Projectile;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level4 extends LevelStructure{
@@ -14,35 +14,34 @@ public class Level4 extends LevelStructure{
     private final int WIDTH = 1000 + PADDING;
     private final int HEIGHT = 500 + PADDING;
     private Picture duck;
-    private Obstacles[] firstTrack = new Projectile[7];
-    private Obstacles[] secondTrack = new Projectile[4];
-    private Obstacles[] thirdTrack = new Projectile[5];
-    private Obstacles[] fourthTrack = new Projectile[4];
-    private Obstacles[] fifthTrack = new Projectile[4];
-    private Obstacles[] sixthTrack = new Projectile[5];
-    private Obstacles[] seventhTrack = new Projectile[3];
-    private Obstacles[] eightTrack = new Projectile[2];
+    private Obstacles[] firstTrack = new Comet[7];
+    private Obstacles[] secondTrack = new Comet[4];
+    private Obstacles[] thirdTrack = new Comet[5];
+    private Obstacles[] fourthTrack = new Comet[4];
+    private Obstacles[] fifthTrack = new Comet[4];
+    private Obstacles[] sixthTrack = new Comet[5];
+    private Obstacles[] seventhTrack = new Comet[3];
+    private Obstacles[] eightTrack = new Comet[2];
     private boolean dead = false;
-    private Rectangle levelObjective = new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110, 490, "hp/fullhp.png");
-    private Picture border = new Picture(10, 10, "backgrounds/space.jpg");
-    private Picture level3 = new Picture(850, 483, "lvls/lvl3.png");
+    private Picture border = new Picture(10, 10, "backgrounds/border.png");
+    private Picture level4 = new Picture(850, 483, "lvls/lvl4.png");
 
     public Level4() {
 
-        duck = new Duck();
+        duck = new DuckSpaceShip();
         gameOverLet = new Picture(385, 130, "dead/gameOver.png");
 
     }
 
     public void start() throws InterruptedException {
-        Picture nasaTexture = new Picture(95, 10, "backgrounds/Nasa_Texture.png");
+        Picture nasaTexture = new Picture(95, 10, "backgrounds/Space_Level.png");
         nasaTexture.draw();
         while (true) {
             border.delete();
-            level3.delete();
+            level4.delete();
 
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
@@ -68,7 +67,7 @@ public class Level4 extends LevelStructure{
                     deleteLevel();
                     hp.delete();
                     border.delete();
-                    level3.delete();
+                    level4.delete();
                     nasaTexture.delete();
                     return;
                 }
@@ -140,7 +139,7 @@ public class Level4 extends LevelStructure{
             while (lives == 0) {
                 grave.draw();
                 border.draw();
-                level3.draw();
+                level4.draw();
                 gameOverLet.draw();
                 gameOver = true;
 
@@ -150,7 +149,7 @@ public class Level4 extends LevelStructure{
             gameOverLet.delete();
             grave.delete();
             border.delete();
-            level3.delete();
+            level4.delete();
             nasaTexture.delete();
             return;
 
@@ -173,18 +172,18 @@ public class Level4 extends LevelStructure{
     }
 
 
-    public void createProjectile(Obstacles[] track, int speed, int atX, int atY) {
+    public void createComet(Obstacles[] track, int speed, int atX, int atY) {
         if (speed > 0) {
             for (int i = 0; i < track.length; i++) {
 
-                track[i] = new Projectile((i + 1) * atX - 150, atY, speed);
+                track[i] = new Comet((i + 1) * atX - 150, atY, speed);
 
 
             }
         } else {
             for (int i = track.length; i > 0; i--) {
 
-                track[i - 1] = new Projectile(i * atX + 150, atY, speed);
+                track[i - 1] = new Comet(i * atX + 150, atY, speed);
 
 
             }
@@ -193,13 +192,6 @@ public class Level4 extends LevelStructure{
 
     }
 
-    public void createRobotDuck(Obstacles[] track, int speed, int atX, int atY) {
-        for (int i = 0; i < track.length; i++) {
-
-
-        }
-
-    }
 
 
     public void checkDead(Obstacles obstacle) {
@@ -244,7 +236,7 @@ public class Level4 extends LevelStructure{
         deleteObstacles(seventhTrack);
         deleteObstacles(eightTrack);
         border.delete();
-        level3.delete();
+        level4.delete();
 
         dead = false;
     }
@@ -278,21 +270,19 @@ public class Level4 extends LevelStructure{
 
     public void createLevel() {
         duck.delete();
-        duck = new Duck();
-        levelObjective = new Rectangle(10, 10, WIDTH, 30);
+        duck = new DuckSpaceShip();
         duck.draw();
-
-        createProjectile(firstTrack, -8, 100, 403);
-        createProjectile(secondTrack, 10, 120, 353);
-        createProjectile(thirdTrack, -9, 100, 311);
-        createProjectile(fourthTrack, 15, 200, 253);
-        createProjectile(fifthTrack, -20, 100, 224);
-        createProjectile(sixthTrack, 20, 70, 174);
-        createProjectile(seventhTrack, -17, 70, 139);
-        createProjectile(eightTrack, 17, 100, 87);
+        createComet(firstTrack, -8, 100, 403);
+        createComet(secondTrack, 10, 120, 353);
+        createComet(thirdTrack, -9, 100, 311);
+        createComet(fourthTrack, 15, 200, 253);
+        createComet(fifthTrack, -20, 100, 224);
+        createComet(sixthTrack, 20, 70, 174);
+        createComet(seventhTrack, -17, 70, 139);
+        createComet(eightTrack, 17, 100, 87);
 
         border.draw();
-        level3.draw();
+        level4.draw();
 
     }
 
