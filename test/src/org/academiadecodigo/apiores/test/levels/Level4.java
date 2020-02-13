@@ -5,6 +5,7 @@ import org.academiadecodigo.apiores.test.duck.DuckSpaceShip;
 import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.Comet;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
+import org.academiadecodigo.apiores.test.sound.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level4 extends LevelStructure{
@@ -28,7 +29,7 @@ public class Level4 extends LevelStructure{
     private Picture hp = new Picture(110, 490, "hp/fullhp.png");
     private Picture border = new Picture(10, 10, "backgrounds/border.png");
     private Picture level4 = new Picture(850, 483, "lvls/lvl4.png");
-    ///  private Sound quack = new Sound("  resources/Quack Sound Effect  Gutlacky.wav");
+    private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
     public Level4() {
 
@@ -204,8 +205,9 @@ public class Level4 extends LevelStructure{
 
                 if (obstacle.getObstacle().getX() < j && obstacle.getObstacle().getX() + obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY() + obstacle.getHeight() > k) {
+
+                    quack.play(true);
                     dead = true;
-                    ///quack.play(true);
                 }
             }
 

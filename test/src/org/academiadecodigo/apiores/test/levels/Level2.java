@@ -4,6 +4,7 @@ package org.academiadecodigo.apiores.test.levels;
 import org.academiadecodigo.apiores.test.duck.Duck;
 import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.*;
+import org.academiadecodigo.apiores.test.sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -29,6 +30,7 @@ public class Level2 extends LevelStructure {
 
     private Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
     private Picture cityTexture = new Picture(100, 10, "backgrounds/City_Texture3.png");
+    private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
 
 
@@ -195,6 +197,7 @@ public class Level2 extends LevelStructure {
                 if(obstacle.getObstacle().getX() < j &&  obstacle.getObstacle().getX()+obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY()+obstacle.getHeight() >k){
                     dead = true;
+                    quack.play(true);
                 }
             }
 

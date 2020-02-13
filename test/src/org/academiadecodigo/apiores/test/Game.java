@@ -19,6 +19,9 @@ public class Game {
         Sound moon = new Sound(" resources/09-the-moon.wav");
 
         while (true) {
+            alleyCat.stop();
+            shadow.stop();
+            corneria.stop();
             alleyCat.play(true);
             startMenu.startMenu();
 
@@ -49,10 +52,15 @@ public class Game {
                 continue;
             }
 
+
+
             Picture end = new Picture(10,10,"backgrounds/end.png");
+            corneria.stop();
+            moon.play(true);
             end.draw();
             Thread.sleep(15000);
             end.delete();
+            moon.stop();
 
         }
 
