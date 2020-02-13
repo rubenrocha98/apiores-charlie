@@ -22,7 +22,6 @@ public class Level3 extends LevelStructure{
     private Obstacles[] seventhTrack = new Projectile[3];
     private Obstacles[] eightTrack = new Projectile[2];
     private boolean dead = false;
-    private Rectangle levelObjective= new Rectangle(600, 10, 30, 30);
     private Picture gameOverLet;
     private Picture grave;
     private Picture hp = new Picture(110,490, "hp/fullhp.png");
@@ -60,9 +59,8 @@ public class Level3 extends LevelStructure{
             hp.delete();
             hp.draw();
             while (!dead) {
-                System.out.println(duck.getX()+" "+duck.getY());
-
                 if (checkCleared()) {
+                    duck.delete();
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
@@ -270,9 +268,7 @@ public class Level3 extends LevelStructure{
     public void createLevel(){
         duck.delete();
         duck = new Duck();
-        levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
-
         createProjectile(firstTrack, -8, 100, 403);
         createProjectile(secondTrack, 10, 120, 353);
         createProjectile(thirdTrack, -9, 100, 311);
@@ -281,12 +277,9 @@ public class Level3 extends LevelStructure{
         createProjectile(sixthTrack, 20, 70, 174);
         createProjectile(seventhTrack, -17, 70, 139);
         createProjectile(eightTrack, 17, 100, 87 );
-
         border.draw();
         level3.draw();
 
     }
-
-
 
 }
