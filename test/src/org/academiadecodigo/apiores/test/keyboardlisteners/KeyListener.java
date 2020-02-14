@@ -88,9 +88,9 @@ public class KeyListener implements KeyboardHandler {
 
                 } else {
                     if (stepIsEven) {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck1.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck1.png");
                     } else {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck3.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck3.png");
                     }
                 }
 
@@ -109,9 +109,9 @@ public class KeyListener implements KeyboardHandler {
 
                 } else {
                     if (stepIsEven) {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck10.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck10.png");
                     } else {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck12.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck12.png");
                     }
                 }
                 break;
@@ -128,9 +128,9 @@ public class KeyListener implements KeyboardHandler {
                 } else {
                     stepIsEven ^= true;
                     if (stepIsEven) {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck4.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck4.png");
                     } else {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck6.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck6.png");
                     }
 
                 }
@@ -148,9 +148,9 @@ public class KeyListener implements KeyboardHandler {
 
                 } else {
                     if (stepIsEven) {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck7.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck7.png");
                     } else {
-                        Game.getCurrentLevel().getDuck().load("duck/Duck9.png");
+                        Game.getCurrentLevel().getDuck().load("resources/duck/Duck9.png");
                     }
 
 
