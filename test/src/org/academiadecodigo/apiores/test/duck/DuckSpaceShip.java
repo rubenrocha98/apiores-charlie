@@ -7,7 +7,7 @@ public class DuckSpaceShip extends Picture {
     public DuckSpaceShip() {
 
 
-        super(480, 440, "duck/duckspaceship.png");
+        super(480, 440, "resources/duck/duckspaceship.png");
 
     }
 }

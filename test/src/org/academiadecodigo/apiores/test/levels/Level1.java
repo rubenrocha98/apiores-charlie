@@ -20,12 +20,12 @@ public class Level1 extends LevelStructure {
     private Picture grave;
     private Picture gameOverLet;
 
-    private Picture hp = new Picture(110,487, "hp/fullhp.png");
+    private Picture hp = new Picture(110,487, "resources/hp/fullhp.png");
 
     private boolean dead = false;
-    private Picture border = new Picture(10,10, "backgrounds/border.png");
-    private Picture level = new Picture(850,483, "lvls/lvl1.png");
-    private Picture textureDesert = new Picture(100, 10, "backgrounds/Desert_Texture.png");
+    private Picture border = new Picture(10,10, "resources/ackgrounds/border.png");
+    private Picture level = new Picture(850,483, "resources/lvls/lvl1.png");
+    private Picture textureDesert = new Picture(100, 10, "resources/backgrounds/Desert_Texture.png");
     private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
 
@@ -33,7 +33,7 @@ public class Level1 extends LevelStructure {
 
     public Level1() {
         duck = new Duck();
-        gameOverLet = new Picture(385,130, "dead/gameOver.png");
+        gameOverLet = new Picture(385,130, "resources/dead/gameOver.png");
     }
 
 
@@ -44,7 +44,7 @@ public class Level1 extends LevelStructure {
         textureDesert.draw();
         border.delete();
         level.delete();
-        hp.load("hp/fullhp.png");
+        hp.load("resources/hp/fullhp.png");
 
 
         while (true) {
@@ -93,7 +93,7 @@ public class Level1 extends LevelStructure {
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
+                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "resources/dead/grave_resized.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
@@ -101,13 +101,13 @@ public class Level1 extends LevelStructure {
                 grave.delete();
 
                 if(lives==2){
-                    hp.load("hp/2hpleft.png");
+                    hp.load("resources/hp/2hpleft.png");
                 }
                 if(lives==1){
-                    hp.load("hp/1hpleft.png");
+                    hp.load("resources/hp/1hpleft.png");
                 }
                 if(lives==0){
-                    hp.load("hp/nohpleft.png");
+                    hp.load("resources/hp/nohpleft.png");
                 }
                 if (lives != 0) {
                     continue;
@@ -120,7 +120,7 @@ public class Level1 extends LevelStructure {
                 gameOver=true;
                 border.draw();
                 level.draw();
-                hp.load("hp/fullhp.png");
+                hp.load("resources/hp/fullhp.png");
             }
 
             border.delete();
