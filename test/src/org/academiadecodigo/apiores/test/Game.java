@@ -14,8 +14,8 @@ public class Game {
 
     public void game() throws InterruptedException {
         MainMenu startMenu = new MainMenu();
-        Picture devs = new Picture(10,10,"credits/Developers.png");
-        Picture mcs = new Picture(10,10,"credits/Special-Thanks.png");
+        Picture devs = new Picture(10,10,"resources/credits/Developers.png");
+        Picture mcs = new Picture(10,10,"resources/credits/Special-Thanks.png");
         Sound alleyCat = new Sound(" resources/05 Alleycat Blues (1).wav");
         Sound shadow = new Sound(" resources/24-Shadow-Master.wav");
         Sound corneria = new Sound(" resources/06 Corneria (1).wav");
@@ -64,7 +64,7 @@ public class Game {
             moon.play(true);
             cutscene.landingCutscene();
 
-            Picture end = new Picture(10,10,"backgrounds/end.png");
+            Picture end = new Picture(10,10,"resources/backgrounds/end.png");
 
             end.draw();
             Thread.sleep(7000);
