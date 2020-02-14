@@ -142,7 +142,7 @@ public class Level4 extends LevelStructure{
 
             hp.draw();
             while (lives == 0) {
-                grave.draw();
+
                 border.draw();
                 level4.draw();
                 gameOverLet.draw();

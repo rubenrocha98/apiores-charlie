@@ -136,7 +136,7 @@ public class Level3 extends LevelStructure{
 
             hp.draw();
             while(lives == 0) {
-                grave.draw();
+
                 border.draw();
                 level3.draw();
                 gameOverLet.draw();

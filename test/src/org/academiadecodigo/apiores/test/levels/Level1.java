@@ -23,7 +23,7 @@ public class Level1 extends LevelStructure {
     private Picture hp = new Picture(110,487, "resources/hp/fullhp.png");
 
     private boolean dead = false;
-    private Picture border = new Picture(10,10, "resources/ackgrounds/border.png");
+    private Picture border = new Picture(10,10, "resources/backgrounds/border.png");
     private Picture level = new Picture(850,483, "resources/lvls/lvl1.png");
     private Picture textureDesert = new Picture(100, 10, "resources/backgrounds/Desert_Texture.png");
     private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
@@ -115,7 +115,6 @@ public class Level1 extends LevelStructure {
             }
 
             while(lives == 0) {
-                grave.draw();
                 gameOverLet.draw();
                 gameOver=true;
                 border.draw();

@@ -59,7 +59,7 @@ public class Level2 extends LevelStructure {
                 hp.load("resources/hp/2hpleft.png");
             }
             if(lives==1){
-                hp.load("resources/p/1hpleft.png");
+                hp.load("resources/hp/1hpleft.png");
             }
             if(lives==0){
                 hp.load("resources/hp/nohpleft.png");
@@ -122,7 +122,7 @@ public class Level2 extends LevelStructure {
                     hp.load("resources/hp/2hpleft.png");
                 }
                 if(lives==1){
-                    hp.load("resources/p/1hpleft.png");
+                    hp.load("resources/hp/1hpleft.png");
                 }
                 if(lives==0){
                     hp.load("resources/hp/nohpleft.png");
@@ -134,7 +134,6 @@ public class Level2 extends LevelStructure {
 
 
             while(lives == 0) {
-                grave.draw();
 
                 gameOverLet.draw();
                 gameOver=true;
