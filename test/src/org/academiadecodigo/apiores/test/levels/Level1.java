@@ -3,6 +3,7 @@ package org.academiadecodigo.apiores.test.levels;
 import org.academiadecodigo.apiores.test.duck.Duck;
 import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.*;
+import org.academiadecodigo.apiores.test.sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -19,13 +20,13 @@ public class Level1 extends LevelStructure {
     private Picture grave;
     private Picture gameOverLet;
 
-    private Picture hp = new Picture(110,490, "hp/fullhp.png");
+    private Picture hp = new Picture(110,487, "hp/fullhp.png");
 
     private boolean dead = false;
-    private Rectangle levelObjective=new Rectangle(600, 10, 30, 30);
     private Picture border = new Picture(10,10, "backgrounds/border.png");
     private Picture level = new Picture(850,483, "lvls/lvl1.png");
     private Picture textureDesert = new Picture(100, 10, "backgrounds/Desert_Texture.png");
+    private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
 
 
@@ -47,9 +48,6 @@ public class Level1 extends LevelStructure {
 
 
         while (true) {
-            if (checkCleared()) {
-                break;
-            }
             hp.delete();
             createLevel();
             KeyListener keyboard = new KeyListener(duck, 10);  // NÃO MEXER NA SPEED
@@ -58,12 +56,14 @@ public class Level1 extends LevelStructure {
 
 
                 if (checkCleared()) {
+                    duck.delete();
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
                     border.delete();
                     level.delete();
                     textureDesert.delete();
+
                     return;
                 }
 
@@ -166,6 +166,7 @@ public class Level1 extends LevelStructure {
                 if (obstacle.getObstacle().getX() < j && obstacle.getObstacle().getX() + obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY() + obstacle.getHeight() > k) {
                     dead = true;
+                    quack.play(true);
                 }
             }
 
@@ -230,7 +231,6 @@ public class Level1 extends LevelStructure {
     public void createLevel() {
         duck.delete();
         duck = new Duck();
-        levelObjective = new Rectangle(10, 10, WIDTH, 30);
         duck.draw();
 
 

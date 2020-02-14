@@ -5,6 +5,7 @@ import org.academiadecodigo.apiores.test.duck.DuckSpaceShip;
 import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.Comet;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
+import org.academiadecodigo.apiores.test.sound.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level4 extends LevelStructure{
@@ -17,21 +18,23 @@ public class Level4 extends LevelStructure{
     private Obstacles[] firstTrack = new Comet[7];
     private Obstacles[] secondTrack = new Comet[4];
     private Obstacles[] thirdTrack = new Comet[5];
-    private Obstacles[] fourthTrack = new Comet[4];
+    private Obstacles[] fourthTrack = new Comet[3];
     private Obstacles[] fifthTrack = new Comet[4];
     private Obstacles[] sixthTrack = new Comet[5];
     private Obstacles[] seventhTrack = new Comet[3];
-    private Obstacles[] eightTrack = new Comet[2];
+    private Obstacles[] eightTrack = new Comet[3];
     private boolean dead = false;
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110, 490, "hp/fullhp.png");
+    private Picture hp = new Picture(110, 487, "hp/fullhp.png");
     private Picture border = new Picture(10, 10, "backgrounds/border.png");
     private Picture level4 = new Picture(850, 483, "lvls/lvl4.png");
+    private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
     public Level4() {
 
         duck = new DuckSpaceShip();
+        duck.grow(10,10);
         gameOverLet = new Picture(385, 130, "dead/gameOver.png");
 
     }
@@ -63,6 +66,7 @@ public class Level4 extends LevelStructure{
 
 
                 if (checkCleared()) {
+                    duck.delete();
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
@@ -107,6 +111,7 @@ public class Level4 extends LevelStructure{
                     checkDead(obstacle);
                 }
 
+
                 Thread.sleep(75);
 
 
@@ -114,7 +119,7 @@ public class Level4 extends LevelStructure{
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
+                grave = new Picture(duck.getX() - 15, duck.getY() - 15, "dead/Explosion.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
@@ -202,6 +207,8 @@ public class Level4 extends LevelStructure{
 
                 if (obstacle.getObstacle().getX() < j && obstacle.getObstacle().getX() + obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY() + obstacle.getHeight() > k) {
+
+                    quack.play(true);
                     dead = true;
                 }
             }
@@ -272,14 +279,14 @@ public class Level4 extends LevelStructure{
         duck.delete();
         duck = new DuckSpaceShip();
         duck.draw();
-        createComet(firstTrack, -8, 100, 403);
-        createComet(secondTrack, 10, 120, 353);
-        createComet(thirdTrack, -9, 100, 311);
-        createComet(fourthTrack, 15, 200, 253);
-        createComet(fifthTrack, -20, 100, 224);
-        createComet(sixthTrack, 20, 70, 174);
-        createComet(seventhTrack, -17, 70, 139);
-        createComet(eightTrack, 17, 100, 87);
+        createComet(firstTrack, -8, 100, 87);
+        createComet(secondTrack, 10, 120, 139);
+        createComet(thirdTrack, -9, 100, 174);
+        createComet(fourthTrack, 15, 200, 210);
+        createComet(fifthTrack, -20, 100, 300);
+        createComet(sixthTrack, 20, 70, 340);
+        createComet(seventhTrack, -17, 70, 360);
+        createComet(eightTrack, 30, 100, 40);
 
         border.draw();
         level4.draw();

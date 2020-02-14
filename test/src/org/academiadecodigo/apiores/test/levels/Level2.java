@@ -4,6 +4,7 @@ package org.academiadecodigo.apiores.test.levels;
 import org.academiadecodigo.apiores.test.duck.Duck;
 import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.*;
+import org.academiadecodigo.apiores.test.sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -18,17 +19,18 @@ public class Level2 extends LevelStructure {
     private Obstacles[] thirdTrack = new Car[5];
     private Obstacles[] fourthTrack = new Car[4];
     private Obstacles[] fifthTrack = new Car[4];
-    private Obstacles[] sixthTrack = new Car[4];
+    private Obstacles[] sixthTrack = new Bus[5];
 
     private boolean dead = false;
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490, "hp/fullhp.png");
+    private Picture hp = new Picture(110,487, "hp/fullhp.png");
     private Picture border = new Picture(10,10, "backgrounds/border.png");
     private Picture level2 = new Picture(850,483, "lvls/lvl2.png");
 
     private Shape rec = new Rectangle(10, 10, WIDTH, HEIGHT);
     private Picture cityTexture = new Picture(100, 10, "backgrounds/City_Texture3.png");
+    private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
 
 
 
@@ -195,6 +197,7 @@ public class Level2 extends LevelStructure {
                 if(obstacle.getObstacle().getX() < j &&  obstacle.getObstacle().getX()+obstacle.getWidth() > j &&
                         obstacle.getObstacle().getY() < k && obstacle.getObstacle().getY()+obstacle.getHeight() >k){
                     dead = true;
+                    quack.play(true);
                 }
             }
 
@@ -266,7 +269,7 @@ public class Level2 extends LevelStructure {
         createCars(thirdTrack, -15, 150, 210);
         createCars(fourthTrack,15,145,260);
         createCars(fifthTrack, 14, 145, 140);
-        createCars(sixthTrack, -12, 115, 90);
+        createBuses(sixthTrack, -12, 165, 90);
         border.draw();
         level2.draw();
 
