@@ -104,7 +104,7 @@ public class Cutscene {
         Thread.sleep(1000);
 
         pic.delete();
-
+        System.out.println();
     }
 
 
