@@ -1,7 +1,7 @@
-<project name="WhyDuck" default="jarfile">
+<project name="WhyDidTheDuckCrossTheRoad" default="jarfile">
 
     <target name="init" description="Inits properties">
-        <property name="project.name" value="WhyDuck"/>
+        <property name="project.name" value="WhyDidTheDuckCrossTheRoad"/>
         <property name="src.dir" value="src"/>
         <property name="main.class" value="org.academiadecodigo.apiores.test.Main"/>
         <property name="build.dir" value="build"/>
