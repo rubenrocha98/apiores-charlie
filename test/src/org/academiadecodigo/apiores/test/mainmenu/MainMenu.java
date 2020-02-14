@@ -10,7 +10,7 @@ public class MainMenu {
 
 
     public void startMenu(){
-        Picture start = new Picture(PADDING,PADDING, "backgrounds/startMenu.png");
+        Picture start = new Picture(PADDING,PADDING, "resources/backgrounds/startMenu.png");
         EnterKeyListener enter = new EnterKeyListener(start);
 
         inMenu=true;

@@ -14,7 +14,7 @@ public class RobotDuck implements Obstacles{
 
 
     public RobotDuck(int atX, int atY, int speed){
-        obstacle = new Picture(atX-width, atY, "cars/Car1_Resized.png");
+        obstacle = new Picture(atX-width, atY, "resources/cars/Car1_Resized.png");
         this.speed = speed;
         obstacle.draw();
 

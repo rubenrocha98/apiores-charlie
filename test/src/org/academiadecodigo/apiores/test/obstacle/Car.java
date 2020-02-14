@@ -14,10 +14,10 @@ public class Car implements Obstacles{
 
     public Car(int atX, int atY, int speed){
         if(speed>0){
-            obstacle = new Picture(atX-width, atY, "cars/Car3_Resized_Left.png");
+            obstacle = new Picture(atX-width, atY, "resources/cars/Car3_Resized_Left.png");
 
         }else {
-            obstacle = new Picture(atX-width,atY, "cars/Car1_Resized.png");
+            obstacle = new Picture(atX-width,atY, "resources/cars/Car1_Resized.png");
         }
 
         this.speed = speed;

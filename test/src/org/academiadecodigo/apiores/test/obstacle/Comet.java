@@ -13,10 +13,10 @@ public class Comet implements Obstacles{
 
     public Comet(int atX, int atY, int speed){
         if(speed>0){
-            obstacle = new Picture(atX-width, atY, "comet/cometLeft.png");
+            obstacle = new Picture(atX-width, atY, "resources/comet/cometLeft.png");
 
         }else {
-            obstacle = new Picture(atX-width,atY, "comet/asteroid.png");
+            obstacle = new Picture(atX-width,atY, "resources/comet/asteroid.png");
         }
 
         this.speed = speed;

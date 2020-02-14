@@ -14,9 +14,9 @@ public class Bus implements Obstacles {
 
     public Bus(int atX, int atY, int speed) {
         if(speed>0){
-            obstacle = new Picture(atX-width,atY, "bus/Bus-left.png");
+            obstacle = new Picture(atX-width,atY, "resources/bus/Bus-left.png");
         }else{
-            obstacle = new Picture(atX-width, atY, "bus/Bus.png");
+            obstacle = new Picture(atX-width, atY, "resources/bus/Bus.png");
         }
         this.speed = speed;
         obstacle.draw();
