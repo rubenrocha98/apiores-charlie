@@ -79,7 +79,7 @@ public class Cutscene {
         pic.load("resources/landing-cutscene/End3.png");
         Thread.sleep(200);
 
-        pic.load("resources/anding-cutscene/End4.png");
+        pic.load("resources/landing-cutscene/End4.png");
         Thread.sleep(200);
 
         pic.load("resources/landing-cutscene/End5.png");
