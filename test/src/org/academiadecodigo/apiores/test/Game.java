@@ -1,5 +1,6 @@
 package org.academiadecodigo.apiores.test;
 
+import org.academiadecodigo.apiores.test.cutscene.Cutscene;
 import org.academiadecodigo.apiores.test.levels.*;
 import org.academiadecodigo.apiores.test.levels.LevelStructure;
 import org.academiadecodigo.apiores.test.mainmenu.MainMenu;
@@ -13,10 +14,13 @@ public class Game {
 
     public void game() throws InterruptedException {
         MainMenu startMenu = new MainMenu();
+        Picture devs = new Picture(10,10,"credits/Developers.png");
+        Picture mcs = new Picture(10,10,"credits/Special-Thanks.png");
         Sound alleyCat = new Sound(" resources/05 Alleycat Blues (1).wav");
         Sound shadow = new Sound(" resources/24-Shadow-Master.wav");
         Sound corneria = new Sound(" resources/06 Corneria (1).wav");
         Sound moon = new Sound(" resources/09-the-moon.wav");
+        Cutscene cutscene = new Cutscene();
 
         while (true) {
             alleyCat.stop();
@@ -43,23 +47,37 @@ public class Game {
             if(LevelStructure.isGameOver()){
                 continue;
             }
-
             shadow.stop();
+
             corneria.play(true);
+                cutscene.rocketCutscene();
+            corneria.stop();
+
+            shadow.play(true);
             currentLevel++;
             levels[currentLevel].start();
             if(LevelStructure.isGameOver()){
                 continue;
             }
+            shadow.stop();
 
-
+            moon.play(true);
+            cutscene.landingCutscene();
 
             Picture end = new Picture(10,10,"backgrounds/end.png");
-            corneria.stop();
-            moon.play(true);
+
             end.draw();
-            Thread.sleep(15000);
+            Thread.sleep(7000);
             end.delete();
+
+            devs.draw();
+            Thread.sleep(5000);
+            devs.delete();
+
+            mcs.draw();
+            Thread.sleep(7000);
+            mcs.delete();
+
             moon.stop();
 
         }

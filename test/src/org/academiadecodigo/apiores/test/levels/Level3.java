@@ -5,7 +5,6 @@ import org.academiadecodigo.apiores.test.keyboardlisteners.KeyListener;
 import org.academiadecodigo.apiores.test.obstacle.Obstacles;
 import org.academiadecodigo.apiores.test.obstacle.Projectile;
 import org.academiadecodigo.apiores.test.sound.Sound;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Level3 extends LevelStructure{
@@ -25,7 +24,7 @@ public class Level3 extends LevelStructure{
     private boolean dead = false;
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110,490, "hp/fullhp.png");
+    private Picture hp = new Picture(110,487, "hp/fullhp.png");
     private Picture border = new Picture(10,10, "backgrounds/border.png");
     private Picture level3 = new Picture(850,483, "lvls/lvl3.png");
     private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");

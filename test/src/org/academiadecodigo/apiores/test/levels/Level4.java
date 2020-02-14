@@ -26,7 +26,7 @@ public class Level4 extends LevelStructure{
     private boolean dead = false;
     private Picture gameOverLet;
     private Picture grave;
-    private Picture hp = new Picture(110, 490, "hp/fullhp.png");
+    private Picture hp = new Picture(110, 487, "hp/fullhp.png");
     private Picture border = new Picture(10, 10, "backgrounds/border.png");
     private Picture level4 = new Picture(850, 483, "lvls/lvl4.png");
     private Sound quack = new Sound(" resources/Quack Sound Effect  Gutlacky.wav");
@@ -34,6 +34,7 @@ public class Level4 extends LevelStructure{
     public Level4() {
 
         duck = new DuckSpaceShip();
+        duck.grow(10,10);
         gameOverLet = new Picture(385, 130, "dead/gameOver.png");
 
     }
@@ -65,6 +66,7 @@ public class Level4 extends LevelStructure{
 
 
                 if (checkCleared()) {
+                    duck.delete();
                     Thread.sleep(1500);
                     deleteLevel();
                     hp.delete();
@@ -117,7 +119,7 @@ public class Level4 extends LevelStructure{
 
 
             if (dead) {
-                grave = new Picture(duck.getX() - 6, duck.getY() - 5, "dead/grave_resized.png");
+                grave = new Picture(duck.getX() - 15, duck.getY() - 15, "dead/Explosion.png");
                 grave.draw();
                 lives--;
                 Thread.sleep(1500);
